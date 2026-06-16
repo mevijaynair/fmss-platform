@@ -1,0 +1,6 @@
+[submodule "apps/sams"]
+	path = apps/sams
+	url = https://github.com/mevijaynair/sams.git
+[submodule "apps/contracts"]
+	path = apps/contracts
+	url = https://github.com/mevijaynair/fmss-contracts.git
