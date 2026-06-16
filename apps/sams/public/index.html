@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAMS — Sports Academy Management System</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    // Apply saved/system theme before first paint to avoid a flash.
+    (function () {
+      try {
+        var t = localStorage.getItem('sams_theme')
+          || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============ LOGIN ============ -->
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <div class="login-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.2"/>
+          <path d="M12 6.6l3.1 2.3-1.2 3.7h-3.8L8.9 8.9 12 6.6z"/>
+          <path d="M12 6.6V3.2M15.1 8.9l3.1-1M13.9 12.6l2 3.1M10.1 12.6l-2 3.1M8.9 8.9l-3.1-1"/>
+        </svg>
+      </div>
+      <h1 class="login-title">SAMS</h1>
+      <p class="login-sub">Sports Academy Management System</p>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="you@academy.dev" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn full-w">Sign in</button>
+        <p id="loginError" class="login-error"></p>
+        <p style="text-align:center; margin-top:1rem;">
+          <a href="#" id="forgotPasswordLink" style="font-size:0.85rem; color:var(--text-muted); text-decoration:none;">Forgot password?</a>
+        </p>
+      </form>
+
+      <div class="dev-panel">
+        <div class="dev-panel-head">DEV · quick login</div>
+        <div class="dev-buttons" id="quickLogin"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ APP SHELL ============ -->
+  <div id="appShell" class="shell" hidden>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark" id="brandMark">S</span>
+        <span class="brand-text">
+          <span class="brand-name">SAMS</span>
+          <span class="brand-tag">Academy OS</span>
+        </span>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-foot">
+        <span class="dev-tag">DEV BUILD</span>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-lead">
+          <span class="topbar-sport" id="topbarSport" hidden></span>
+          <div class="topbar-titles">
+            <h2 id="pageTitle" class="page-title">Dashboard</h2>
+            <span id="pageContext" class="page-context"></span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <select id="tenantSelector" class="tenant-select" hidden></select>
+          <button class="icon-btn" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"></button>
+          <div class="user-chip">
+            <span class="avatar" id="userAvatar"></span>
+            <span class="user-meta">
+              <span id="userName" class="user-name"></span>
+              <span id="userRole" class="role-pill"></span>
+            </span>
+          </div>
+          <button class="icon-btn" id="logoutBtn" title="Sign out" aria-label="Sign out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content" id="content">
+
+        <!-- DASHBOARD -->
+        <section class="view" data-view="dashboard">
+          <div class="sport-hero" id="sportHero" hidden></div>
+          <div class="kpi-strip" id="kpiStrip"></div>
+          <div class="sams-card">
+            <div class="card-header"><h3 class="card-title">Billing &amp; Churn Analytics</h3>
+              <span class="card-sub">Active cohort</span></div>
+            <div class="grid-2">
+              <div>
+                <div class="sport-scoped">
+                  <h4 class="mini-h">Sport Mix</h4><div class="bars" id="sportBars"></div>
+                </div>
+                <h4 class="mini-h mt">Fee Plan Mix</h4><div class="bars" id="planBars"></div>
+              </div>
+              <div>
+                <h4 class="mini-h">Payment Standing</h4><div class="bars" id="paymentBars"></div>
+                <h4 class="mini-h mt">Churn Tags</h4><div class="bars" id="churnBars"></div>
+                <h4 class="mini-h mt">EID Watchlist</h4><div id="eidWatchlist" class="hint"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STUDENTS -->
+        <section class="view" data-view="students" hidden>
+          <div class="sams-card">
+            <div class="card-header">
+              <h3 class="card-title">Enrolment &amp; Compliance</h3>
+              <button class="btn btn-secondary btn-sm" id="toggleForm" data-perm="students:write">+ Add student</button>
+            </div>
+            <form id="studentForm" hidden>
+              <input type="hidden" id="studentId">
+              <div class="form-row">
+                <div class="form-group"><label>Student Full Name *</label>
+                  <input type="text" id="f_name" required placeholder="John Doe"></div>
+                <div class="form-group sport-scoped" id="g_sport"><label>Sport *</label><select id="f_sport"></select></div>
+              </div>
+              <div class="form-row mt">
+                <div class="form-group"><label>Age Bracket *</label><select id="f_ageGroup"></select></div>
+                <div class="form-group"><label>Account Status</label>
+                  <select id="f_accountStatus">
+                    <option value="Active">Active Enrolment</option>
+                    <option value="Exited">Exited Academy</option>
+                  </select></div>
+              </div>
+              <div class="form-row mt">
+                <div class="form-group"><label>Emirates ID (EID)</label>
+                  <input type="text" id="f_eidNumber" placeholder="784-YYYY-XXXXXXX-Z"></div>
+                <div class="form-group"><label>EID Expiry</label><input type="date" id="f_eidExpiry"></div>
+              </div>
+              <div class="form-group full mt">
+                <label>EID Verification Scan (mock upload)</label>
+                <div class="file-dropzone" id="f_dropzone">Drop compliance documents or click to upload</div>
+              </div>
+
+              <div class="form-row mt">
+                <div class="form-group"><label>Fee Plan *</label><select id="f_feePlan"></select></div>
+                <div class="form-group"><label id="f_rateLabel">Monthly Fee (AED)</label>
+                  <input type="number" id="f_feeRate" min="0" step="10" value="450"></div>
+              </div>
+              <div class="form-row mt" id="g_package" hidden>
+                <div class="form-group"><label>Package Sessions (total)</label>
+                  <input type="number" id="f_pkgTotal" min="0" value="10"></div>
+                <div class="form-group"><label>Sessions Remaining</label>
+                  <input type="number" id="f_pkgRemaining" min="0" value="10"></div>
+              </div>
+
+              <div class="form-row mt">
+                <div class="form-group"><label>Payment Status</label>
+                  <select id="f_paymentStatus">
+                    <option value="Paid">Paid</option><option value="Due">Due</option>
+                    <option value="Overdue">Overdue</option>
+                  </select></div>
+                <div class="form-group"><label>Holiday Freeze Range</label>
+                  <input type="text" id="f_freezeRange" placeholder="e.g. July - August"></div>
+              </div>
+              <div class="form-row mt" id="g_exit" hidden>
+                <div class="form-group"><label>Exit Reason Tag</label>
+                  <select id="f_exitReason">
+                    <option value="">Select reason...</option>
+                    <option value="Relocation">Expat Relocation</option>
+                    <option value="Financial">Financial / Pricing</option>
+                    <option value="Academic">School Timetable</option>
+                    <option value="Competitor">Churned to Rival</option>
+                  </select></div>
+              </div>
+              <div style="display:flex; gap:0.6rem; margin-top:1.25rem;">
+                <button type="submit" class="btn" id="f_submit">Commit Record</button>
+                <button type="button" class="btn btn-secondary" id="f_cancel">Cancel</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="sams-card">
+            <div class="card-header">
+              <h3 class="card-title">Central Registry</h3>
+              <button class="btn btn-secondary btn-sm" id="exportCsv">Export CSV</button>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="sams-table" id="rosterTable">
+                <thead><tr>
+                  <th>Student</th><th class="sport-scoped">Sport</th><th>Cohort</th><th>EID</th>
+                  <th>Fee Plan</th><th>Payment</th><th>Status</th><th></th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ATTENDANCE -->
+        <section class="view" data-view="attendance" hidden>
+          <div class="sams-card">
+            <div class="card-header">
+              <h3 class="card-title">Attendance Roster</h3>
+              <div style="display:flex; gap:0.5rem; align-items:center;">
+                <input type="date" id="attDate" style="width:auto;">
+                <button class="btn btn-secondary btn-sm" id="attAllPresent">Mark all present</button>
+              </div>
+            </div>
+            <p class="hint">Tap a player to toggle present / absent, then commit the session.</p>
+            <div class="att-list" id="attList"></div>
+            <button class="btn full-w" id="attSave" data-perm="attendance:write">Commit Session Attendance</button>
+          </div>
+        </section>
+
+        <!-- PERFORMANCE -->
+        <section class="view" data-view="performance" hidden>
+          <!-- Squad-wide comparison matrix (columns adapt to the sport) -->
+          <div class="sams-card">
+            <div class="card-header"><h3 class="card-title">Squad Performance Matrix</h3>
+              <span class="card-sub">Latest evaluation · key metrics</span></div>
+            <div id="perfMatrixSportRow" class="form-group" style="max-width:240px;" hidden>
+              <label>Sport</label><select id="perfMatrixSport"></select>
+            </div>
+            <div style="overflow-x:auto;" id="perfMatrix"></div>
+            <p class="hint">Click a metric header to sort, or a row to evaluate that player.</p>
+          </div>
+
+          <!-- Single-player evaluation: stat summary + category-grouped entry -->
+          <div class="sams-card" id="perfEvalCard">
+            <div class="card-header"><h3 class="card-title">Player Evaluation</h3>
+              <span class="card-sub" id="perfHistory"></span></div>
+            <div class="form-group"><label>Active Player</label>
+              <select id="perfPlayerSelect"><option value="">Select a player to evaluate...</option></select></div>
+            <div id="perfSummary"><p class="hint">Select a player to view their performance profile.</p></div>
+            <div id="perfInputs"></div>
+            <button class="btn full-w" id="perfSave" data-perm="performance:write">Save Evaluation Log</button>
+          </div>
+        </section>
+
+        <!-- BILLING -->
+        <section class="view" data-view="billing" hidden>
+          <div class="sams-card">
+            <div class="card-header"><h3 class="card-title">Billing</h3>
+              <span class="card-sub" id="billingTotal"></span></div>
+            <div style="overflow-x:auto;">
+              <table class="sams-table" id="billingTable">
+                <thead><tr>
+                  <th>Student</th><th>Sport</th><th>Plan</th><th>Detail</th>
+                  <th>Period Charge</th><th>Payment</th><th>Alert</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- COMMS -->
+        <section class="view" data-view="comms" hidden>
+          <div class="sams-card">
+            <div class="card-header"><h3 class="card-title">Parent Communications</h3>
+              <span class="card-sub">Automated channel formatter</span></div>
+            <div class="form-row">
+              <div class="form-group"><label>Target Student</label>
+                <select id="commsPlayerSelect"><option value="">Select student...</option></select></div>
+              <div class="form-group"><label>Channel</label>
+                <select id="commsChannel">
+                  <option value="WhatsApp">WhatsApp</option><option value="SMS">SMS</option>
+                  <option value="Email">Email</option>
+                </select></div>
+            </div>
+            <div class="form-group mt"><label>Generated Payload</label>
+              <textarea id="commsPayload" rows="8" style="font-family:monospace; font-size:0.85rem;" readonly></textarea></div>
+            <div style="display:flex; gap:0.6rem;">
+              <button class="btn" id="commsCopy">Copy</button>
+              <button class="btn btn-secondary" id="commsWhatsApp">Open in WhatsApp Web</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PARENTS -->
+        <section class="view" data-view="parents" hidden>
+          <div class="sams-card">
+            <div class="card-header">
+              <h3 class="card-title">Parent / Guardian Management</h3>
+              <button class="btn btn-secondary btn-sm" id="toggleParentForm">+ Add parent</button>
+            </div>
+            <form id="parentForm" hidden>
+              <input type="hidden" id="parentId">
+              <div class="form-row">
+                <div class="form-group"><label>Parent Full Name *</label>
+                  <input type="text" id="p_name" required placeholder="Jane Doe"></div>
+                <div class="form-group"><label>Relationship *</label>
+                  <select id="p_relationship">
+                    <option value="Parent">Parent</option>
+                    <option value="Guardian">Guardian</option>
+                    <option value="Emergency Contact">Emergency Contact</option>
+                  </select></div>
+              </div>
+              <div class="form-row mt">
+                <div class="form-group"><label>Email</label>
+                  <input type="email" id="p_email" placeholder="parent@email.com"></div>
+                <div class="form-group"><label>Phone</label>
+                  <input type="tel" id="p_phone" placeholder="+971 50 xxx xxxx"></div>
+              </div>
+              <div style="display:flex; gap:0.6rem; margin-top:1.25rem;">
+                <button type="submit" class="btn" id="p_submit">Save Parent</button>
+                <button type="button" class="btn btn-secondary" id="p_cancel">Cancel</button>
+              </div>
+            </form>
+            <div style="overflow-x:auto;">
+              <table class="sams-table" id="parentsTable">
+                <thead><tr>
+                  <th>Name</th><th>Relationship</th><th>Contact</th><th>Children</th><th></th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Parent Details Modal -->
+          <div id="parentDetailModal" class="modal" hidden>
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 id="parentDetailTitle"></h3>
+                <button class="modal-close" id="parentDetailClose">✕</button>
+              </div>
+              <div class="modal-body" id="parentDetailBody"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AUDIT LOG (Super Admin only) -->
+        <section class="view" data-view="audit" hidden>
+          <div class="sams-card">
+            <div class="card-header">
+              <h3 class="card-title">Audit Log & Compliance</h3>
+              <span class="card-sub">All admin actions tracked</span>
+            </div>
+            <div style="display:flex; gap:0.6rem; margin-bottom:1rem;">
+              <select id="auditFilter" style="flex:1;">
+                <option value="">All Actions</option>
+                <option value="students">Students</option>
+                <option value="parents">Parents</option>
+                <option value="users">Users</option>
+                <option value="tenants">Tenants</option>
+              </select>
+              <input type="number" id="auditDays" min="1" max="365" value="30" style="width:80px;" placeholder="Days">
+              <button class="btn btn-secondary btn-sm" id="auditRefresh">Refresh</button>
+              <button class="btn btn-secondary btn-sm" id="auditExport" data-perm="audit:export">Export</button>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="sams-table" id="auditTable">
+                <thead><tr>
+                  <th>Time</th><th>Actor</th><th>Action</th><th>Entity</th><th>Details</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- USERS -->
+        <section class="view" data-view="users" hidden>
+          <div class="sams-card">
+            <div class="card-header">
+              <h3 class="card-title">Staff &amp; Roles</h3>
+              <button class="btn btn-secondary btn-sm" id="toggleUserForm">+ Add user</button>
+            </div>
+            <form id="userForm" hidden>
+              <div class="form-row">
+                <div class="form-group"><label>Name *</label><input type="text" id="u_name" required></div>
+                <div class="form-group"><label>Email *</label><input type="email" id="u_email" required></div>
+              </div>
+              <div class="form-row mt">
+                <div class="form-group"><label>Password *</label><input type="text" id="u_password" required></div>
+                <div class="form-group"><label>Role *</label><select id="u_role"></select></div>
+              </div>
+              <div class="form-row mt" id="u_sportGroup" hidden>
+                <div class="form-group"><label>Coach Sport</label><select id="u_sport"></select></div>
+              </div>
+              <div style="display:flex; gap:0.6rem; margin-top:1.25rem;">
+                <button type="submit" class="btn">Create User</button>
+                <button type="button" class="btn btn-secondary" id="u_cancel">Cancel</button>
+              </div>
+            </form>
+            <div style="overflow-x:auto;">
+              <table class="sams-table" id="usersTable">
+                <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Sport</th><th>Status</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS / TENANTS -->
+        <section class="view" data-view="settings" hidden>
+          <div class="sams-card">
+            <div class="card-header"><h3 class="card-title">Academies (Tenants)</h3>
+              <span class="card-sub">Super admin</span></div>
+            <form id="tenantForm">
+              <div class="form-group full"><label>New Academy Name</label>
+                <input type="text" id="t_name" placeholder="e.g. Coastal Football Academy"></div>
+              <div class="form-group full mt"><label>Sports this academy runs (pick one for a single-sport academy)</label>
+                <div id="t_sports" class="sport-checks"></div></div>
+              <button type="submit" class="btn mt">Create Academy</button>
+            </form>
+            <div style="overflow-x:auto; margin-top:0.5rem;">
+              <table class="sams-table" id="tenantsTable">
+                <thead><tr><th>ID</th><th>Name</th><th>Sports</th></tr></thead><tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="legal-footer">
+        SAMS is provided <strong>“as-is”</strong>. Verification of player data and Emirates ID (EID)
+        compliance rests <strong>solely with the academy</strong>. The platform owner holds
+        <strong>zero liability</strong> for local operational or scheduling errors.
+      </footer>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- KPI Detail Modal -->
+  <div id="kpiModal" class="modal" hidden>
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="kpiModalTitle"></h3>
+        <button class="modal-close" id="kpiModalClose">✕</button>
+      </div>
+      <div class="modal-body" id="kpiModalBody"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

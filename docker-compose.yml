@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Main reverse proxy
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    ports:
+      - "80:8000"
+      - "443:8443"
+    environment:
+      - NODE_ENV=production
+      - DOMAIN=fmss.ae
+      - SAMS_PORT=3000
+      - CONTRACTS_PORT=3100
+    depends_on:
+      - sams
+      - contracts
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    networks:
+      - platform
+
+  # SAMS microservice
+  sams:
+    build:
+      context: ./apps/sams
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=${SAMS_JWT_SECRET}
+      - DB_PATH=/app/data/sams.db
+    volumes:
+      - sams-data:/app/data
+    networks:
+      - platform
+
+  # Contracts microservice
+  contracts:
+    build:
+      context: ./apps/contracts
+    ports:
+      - "3100:3100"
+    environment:
+      - NODE_ENV=production
+      - PORT=3100
+      - DB_PATH=/app/data/contracts.db
+    volumes:
+      - contracts-data:/app/data
+    networks:
+      - platform
+
+volumes:
+  sams-data:
+  contracts-data:
+
+networks:
+  platform:
+    driver: bridge

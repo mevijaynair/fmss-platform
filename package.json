@@ -1,0 +1,24 @@
+{
+  "name": "fmss-platform",
+  "version": "1.0.0",
+  "description": "FMSS Multi-Domain Platform — consolidated academy + contracts + quiz management",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "setup": "npm install && node scripts/setup.js",
+    "sams:install": "cd apps/sams && npm install",
+    "contracts:install": "cd apps/contracts && npm install",
+    "sams:start": "cd apps/sams && npm start",
+    "contracts:start": "cd apps/contracts && npm start",
+    "sams:dev": "cd apps/sams && npm run dev",
+    "contracts:dev": "cd apps/contracts && npm run dev"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

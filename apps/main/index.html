@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FMSS Football Club</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      width: 90%;
+    }
+
+    .logo {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .nav-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .sams-link {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .sams-link:hover {
+      border-color: #667eea;
+      background: white;
+      color: #667eea;
+    }
+
+    .contracts-link {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: white;
+    }
+
+    .contracts-link:hover {
+      border-color: #f5576c;
+      background: white;
+      color: #f5576c;
+    }
+
+    .quiz-link {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: white;
+    }
+
+    .quiz-link:hover {
+      border-color: #4facfe;
+      background: white;
+      color: #4facfe;
+    }
+
+    .coming-soon {
+      background: linear-gradient(135deg, #ffa400, #ffb300);
+      color: white;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .coming-soon:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    .live {
+      background: #10b981;
+      color: white;
+    }
+
+    .coming {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      color: #999;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .container {
+        padding: 40px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">⚽</div>
+    <h1>FMSS Football Club</h1>
+    <p class="tagline">Complete Academy Management Platform</p>
+
+    <div class="nav-links">
+      <a href="https://sams.fmss.ae" class="nav-links a sams-link">
+        📚 SAMS
+        <div class="status-badge live">Live</div>
+        <div style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Academy Management</div>
+      </a>
+
+      <a href="https://contracts.fmss.ae" class="nav-links a contracts-link">
+        📋 Contracts
+        <div class="status-badge live">Live</div>
+        <div style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Fee Management</div>
+      </a>
+
+      <a href="https://quiz.fmss.ae" class="nav-links a quiz-link" style="grid-column: 1 / 2;">
+        🎯 Quiz
+        <div class="status-badge coming">Coming Soon</div>
+        <div style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Annual Day Quiz</div>
+      </a>
+
+      <div style="grid-column: 2 / 3;">
+        <a href="#" class="nav-links a coming-soon" onclick="return false;">
+          📊 Analytics
+          <div class="status-badge coming">Coming Soon</div>
+          <div style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Performance Dashboard</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>FMSS Football Club © 2025 | All Rights Reserved</p>
+      <p style="margin-top: 10px;">v1.0.0 • Multi-Domain Platform</p>
+    </div>
+  </div>
+</body>
+</html>
