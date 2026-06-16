@@ -434,6 +434,17 @@
       color: var(--accent-yellow);
     }
 
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 3px;
+      margin: 1rem auto 0;
+      border-radius: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-yellow), transparent);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+    }
+
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -684,6 +695,72 @@
     @media (max-width: 768px) {
       .mobile-nav-toggle {
         display: block;
+      }
+    }
+
+    /* ============================================
+       STATS BAND (under hero)
+       ============================================ */
+    .stats-band {
+      position: relative;
+      z-index: 5;
+      background: linear-gradient(90deg, rgba(15, 15, 15, 0.97), rgba(25, 22, 10, 0.97), rgba(15, 15, 15, 0.97));
+      border-top: 1px solid rgba(255, 215, 0, 0.25);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.08);
+      padding: 2.5rem 2rem;
+    }
+
+    .stats-band-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60%;
+      background: linear-gradient(180deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    }
+
+    .stat-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-yellow);
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+    }
+
+    .stat-label {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    @media (max-width: 640px) {
+      .stats-band-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem 0.5rem;
+      }
+      .stat-item:nth-child(2)::after {
+        display: none;
       }
     }
 
@@ -1099,18 +1176,34 @@
        JOIN STEPS
        ============================================ */
     .join-steps {
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 3.5rem 0 2rem;
+    }
+
+    /* Horizontal connector line running through the step numbers */
+    .join-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.35) 12%, rgba(255, 215, 0, 0.35) 88%, transparent);
+      z-index: 0;
     }
 
     .step-card {
+      position: relative;
+      z-index: 1;
+      margin-top: 28px;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 215, 0, 0.15);
       border-radius: 12px;
-      padding: 2.5rem 2rem;
+      padding: 2.8rem 1.5rem 2rem;
       text-align: center;
       transition: all 0.3s ease;
     }
@@ -1122,8 +1215,12 @@
     }
 
     .step-number {
-      width: 60px;
-      height: 60px;
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
       background: linear-gradient(135deg, var(--accent-yellow), var(--accent-yellow-dark));
       color: var(--primary-bg);
       border-radius: 50%;
@@ -1131,8 +1228,23 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.8rem;
-      margin: 0 auto 1.5rem;
+      font-size: 1.7rem;
+      border: 3px solid var(--primary-bg);
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .step-card:hover .step-number {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* Stack the timeline on tablet/mobile: drop the horizontal line */
+    @media (max-width: 1024px) {
+      .join-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .join-steps::before {
+        display: none;
+      }
     }
 
     .step-card h3 {
@@ -1707,6 +1819,28 @@
     </div>
   </section>
 
+  <!-- Stats Band -->
+  <div class="stats-band">
+    <div class="stats-band-inner">
+      <div class="stat-item">
+        <div class="stat-number">40+</div>
+        <div class="stat-label">Brothers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Nights a Week</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Venues</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Goals &amp; Memories</div>
+      </div>
+    </div>
+  </div>
+
   <!-- The Squad Section -->
   <section id="squad" class="league-section">
     <div class="section-bg-image" id="squadBgImage"></div>
@@ -1983,7 +2117,7 @@
   </section>
 
   <!-- GoPro Matches Section -->
-  <section id="gopro" class="league-section">
+  <section id="gopro" class="league-section dark">
     <div class="container">
       <h2 class="section-title">GoPro <span>Highlights</span></h2>
       <p class="section-subtitle">Match Moments Captured in 4K</p>
