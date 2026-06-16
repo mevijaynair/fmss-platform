@@ -198,12 +198,23 @@
     }
 
     .hero .tagline {
-      font-size: clamp(1rem, 3vw, 1.5rem);
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      color: var(--accent-yellow);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .hero .motto {
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
       color: var(--text-secondary);
       margin-bottom: 2rem;
       font-weight: 300;
       letter-spacing: 1px;
       font-family: 'Montserrat', sans-serif;
+      font-style: italic;
     }
 
     .hero-ctas {
@@ -580,10 +591,11 @@
   <section id="home" class="hero">
     <div class="hero-content">
       <div class="hero-logo">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='95' fill='%230A0A0A' stroke='%23FFD700' stroke-width='2'/%3E%3Ctext x='100' y='115' font-family='Arial, sans-serif' font-size='60' font-weight='bold' fill='%23FFD700' text-anchor='middle'%3E⚽%3C/text%3E%3C/svg%3E" alt="FMSS Logo">
+        <img src="fmss-logo.png" alt="FMSS Logo">
       </div>
       <h1>Welcome to <span>FMSS</span></h1>
-      <p class="tagline">The New Standard in Local Football</p>
+      <p class="tagline">Love and Love Only</p>
+      <p class="motto">Brotherhood in Every Match</p>
       <div class="hero-ctas">
         <a href="https://sams.fmss.ae" class="cta-button primary">Join the Squad</a>
         <a href="#operations" class="cta-button secondary">Latest Updates</a>
