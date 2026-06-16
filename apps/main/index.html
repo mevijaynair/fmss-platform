@@ -40,7 +40,8 @@
        NAVIGATION BAR (Sticky with Glassmorphism)
        ============================================ */
     nav.navbar {
-      position: relative;
+      position: sticky;
+      top: 0;
       z-index: 1000;
       background: linear-gradient(90deg, rgba(10, 10, 10, 0.95), rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.95));
       backdrop-filter: blur(15px);
@@ -50,7 +51,6 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 8px 40px rgba(255, 215, 0, 0.15), 0 0 20px rgba(255, 215, 0, 0.1);
-      position: relative;
       overflow: hidden;
     }
 
@@ -224,14 +224,14 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.35;
+      opacity: 0.15;
       animation: bgFade 1.5s ease-in-out;
       z-index: 1;
     }
 
     @keyframes bgFade {
       from { opacity: 0; }
-      to { opacity: 0.35; }
+      to { opacity: 0.15; }
     }
 
     .hero::before {
@@ -709,7 +709,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.25;
+      opacity: 0.12;
       animation: bgFade 1.5s ease-in-out;
       z-index: 0;
       pointer-events: none;
@@ -2108,31 +2108,6 @@
 
     // Load background images on page load
     loadBackgroundImages();
-
-    // Dynamic scroll-based background image opacity
-    const updateBackgroundOpacity = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY / scrollHeight;
-
-      // Hero background: starts at 0.35, fades to 0.05
-      const heroElement = document.getElementById('heroBgImage');
-      if (heroElement) {
-        const heroOpacity = Math.max(0.05, 0.35 - (scrolled * 0.30));
-        heroElement.style.opacity = heroOpacity;
-      }
-
-      // Other sections: start at 0.25, fade to 0.02
-      const otherSectionIds = ['squadBgImage', 'gamesBgImage', 'momentsBgImage'];
-      otherSectionIds.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-          const sectionOpacity = Math.max(0.02, 0.25 - (scrolled * 0.23));
-          element.style.opacity = sectionOpacity;
-        }
-      });
-    };
-
-    window.addEventListener('scroll', updateBackgroundOpacity);
 
     // Fallback SVG logo if image doesn't load
     document.addEventListener('DOMContentLoaded', () => {
