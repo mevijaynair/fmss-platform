@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FMSS - The New Standard in Local Football</title>
+  <title>FMSS - Love and Love Only</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -571,6 +571,294 @@
         display: block;
       }
     }
+
+    /* ============================================
+       LEAGUE SECTIONS (Standings, Matches, etc)
+       ============================================ */
+    .league-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .league-section.dark {
+      background: linear-gradient(180deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    }
+
+    /* Standings Table */
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .standings-table thead {
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    .standings-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .standings-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.05);
+      color: var(--text-secondary);
+    }
+
+    .standings-table tr.highlight {
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .standings-table tr:hover {
+      background: rgba(255, 215, 0, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      .standings-table {
+        font-size: 0.85rem;
+      }
+      .standings-table th,
+      .standings-table td {
+        padding: 0.7rem 0.5rem;
+      }
+    }
+
+    /* Matches Grid */
+    .matches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .match-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .match-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+    }
+
+    .match-date {
+      color: var(--accent-yellow);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .match-time {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .match-teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: 1.5rem 0;
+      gap: 1rem;
+    }
+
+    .match-teams .team {
+      font-weight: 700;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .match-teams .vs {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+
+    .match-venue {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Scorers Grid */
+    .scorers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .scorer-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .scorer-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .scorer-card .rank {
+      font-size: 2.5rem;
+      min-width: 60px;
+    }
+
+    .scorer-card h3 {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .scorer-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .scorer-card .goals {
+      color: var(--accent-yellow);
+      font-weight: 700;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* Awards Grid */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .award-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .award-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .award-card .award-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .award-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .award-card p {
+      color: var(--text-secondary);
+      margin: 0.3rem 0;
+      font-weight: 500;
+    }
+
+    .award-card .award-subtitle {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 300;
+      margin-top: 0.5rem;
+    }
+
+    /* League Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .info-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent-yellow);
+      margin-bottom: 1rem;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .info-card p {
+      color: var(--text-secondary);
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+
+    .info-card .info-detail {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .league-section {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .matches-grid,
+      .scorers-grid,
+      .awards-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scorer-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 
@@ -580,9 +868,10 @@
     <div class="navbar-logo">FMSS</div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#operations">Club Operations</a></li>
-      <li><a href="#community">Community</a></li>
-      <li><a href="#rules">Rulebook</a></li>
+      <li><a href="#standings">Standings</a></li>
+      <li><a href="#matches">Matches</a></li>
+      <li><a href="#scorers">Top Scorers</a></li>
+      <li><a href="#awards">Awards</a></li>
     </ul>
     <button class="mobile-nav-toggle">☰</button>
   </nav>
@@ -597,77 +886,250 @@
       <p class="tagline">Love and Love Only</p>
       <p class="motto">Brotherhood in Every Match</p>
       <div class="hero-ctas">
-        <a href="https://sams.fmss.ae" class="cta-button primary">Join the Squad</a>
-        <a href="#operations" class="cta-button secondary">Latest Updates</a>
+        <a href="#standings" class="cta-button primary">View League</a>
+        <a href="#matches" class="cta-button secondary">See Matches</a>
       </div>
     </div>
   </section>
 
-  <!-- Club Operations Section -->
-  <section id="operations" class="club-operations">
-    <h2 class="section-title">Club <span>Operations</span></h2>
+  <!-- League Standings Section -->
+  <section id="standings" class="league-section">
+    <div class="container">
+      <h2 class="section-title">League <span>Standings</span></h2>
+      <div class="standings-grid">
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Team</th>
+              <th>MP</th>
+              <th>W</th>
+              <th>D</th>
+              <th>L</th>
+              <th>GF</th>
+              <th>GA</th>
+              <th>GD</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td>1</td>
+              <td>The Eagles</td>
+              <td>8</td>
+              <td>6</td>
+              <td>1</td>
+              <td>1</td>
+              <td>24</td>
+              <td>12</td>
+              <td>+12</td>
+              <td>19</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Phoenix Rising</td>
+              <td>8</td>
+              <td>5</td>
+              <td>2</td>
+              <td>1</td>
+              <td>22</td>
+              <td>14</td>
+              <td>+8</td>
+              <td>17</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Brotherhood FC</td>
+              <td>8</td>
+              <td>4</td>
+              <td>2</td>
+              <td>2</td>
+              <td>18</td>
+              <td>15</td>
+              <td>+3</td>
+              <td>14</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>United Strikers</td>
+              <td>8</td>
+              <td>3</td>
+              <td>2</td>
+              <td>3</td>
+              <td>16</td>
+              <td>18</td>
+              <td>-2</td>
+              <td>11</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Golden Boots</td>
+              <td>8</td>
+              <td>2</td>
+              <td>1</td>
+              <td>5</td>
+              <td>14</td>
+              <td>22</td>
+              <td>-8</td>
+              <td>7</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    <div class="bento-grid">
-      <!-- Match Center Card -->
-      <a href="https://contracts.fmss.ae" style="text-decoration: none; color: inherit;">
-        <div class="bento-card">
-          <span class="card-icon">🏟️</span>
-          <h3 class="card-title">Match Center</h3>
-          <p class="card-description">Live scoreboard updates, match statistics, and game-day analytics. Track your club's performance in real-time.</p>
-          <div class="card-link">Explore Matches</div>
+  <!-- Upcoming Matches Section -->
+  <section id="matches" class="league-section dark">
+    <div class="container">
+      <h2 class="section-title">Upcoming <span>Matches</span></h2>
+      <div class="matches-grid">
+        <div class="match-card">
+          <div class="match-date">Friday, June 21</div>
+          <div class="match-time">7:00 PM</div>
+          <div class="match-teams">
+            <div class="team">The Eagles</div>
+            <div class="vs">vs</div>
+            <div class="team">Phoenix Rising</div>
+          </div>
+          <div class="match-venue">🏟️ 365 Sport</div>
         </div>
-      </a>
+        <div class="match-card">
+          <div class="match-date">Saturday, June 22</div>
+          <div class="match-time">6:00 PM</div>
+          <div class="match-teams">
+            <div class="team">Brotherhood FC</div>
+            <div class="vs">vs</div>
+            <div class="team">United Strikers</div>
+          </div>
+          <div class="match-venue">🏟️ Al Wasl Dubai</div>
+        </div>
+        <div class="match-card">
+          <div class="match-date">Sunday, June 23</div>
+          <div class="match-time">5:00 PM</div>
+          <div class="match-teams">
+            <div class="team">Golden Boots</div>
+            <div class="vs">vs</div>
+            <div class="team">The Eagles</div>
+          </div>
+          <div class="match-venue">🏟️ 365 Sport</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Player Portal Card -->
-      <a href="https://sams.fmss.ae" style="text-decoration: none; color: inherit;">
-        <div class="bento-card">
-          <span class="card-icon">👥</span>
-          <h3 class="card-title">Player Portal</h3>
-          <p class="card-description">Jersey bidding, awards voting, and player management. Complete control of your academy profile.</p>
-          <div class="card-link">Player Hub</div>
+  <!-- Top Scorers Section -->
+  <section id="scorers" class="league-section">
+    <div class="container">
+      <h2 class="section-title">Top <span>Scorers</span></h2>
+      <div class="scorers-grid">
+        <div class="scorer-card">
+          <div class="rank">🥇</div>
+          <div class="scorer-info">
+            <h3>Ahmed Al-Mazrouei</h3>
+            <p>The Eagles</p>
+            <div class="goals">12 Goals</div>
+          </div>
         </div>
-      </a>
+        <div class="scorer-card">
+          <div class="rank">🥈</div>
+          <div class="scorer-info">
+            <h3>Mohammed Hassan</h3>
+            <p>Phoenix Rising</p>
+            <div class="goals">10 Goals</div>
+          </div>
+        </div>
+        <div class="scorer-card">
+          <div class="rank">🥉</div>
+          <div class="scorer-info">
+            <h3>Rashid Al-Mansoori</h3>
+            <p>Brotherhood FC</p>
+            <div class="goals">9 Goals</div>
+          </div>
+        </div>
+        <div class="scorer-card">
+          <div class="rank">4️⃣</div>
+          <div class="scorer-info">
+            <h3>Saif Al-Nasser</h3>
+            <p>United Strikers</p>
+            <div class="goals">8 Goals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- League Documents Card -->
-      <a href="#rules" style="text-decoration: none; color: inherit;">
-        <div class="bento-card">
-          <span class="card-icon">📋</span>
-          <h3 class="card-title">League Documents</h3>
-          <p class="card-description">Access the official rulebook, draft order, and league policies. Everything you need to know about FMSS.</p>
-          <div class="card-link">View Rules</div>
+  <!-- Awards & Achievements Section -->
+  <section id="awards" class="league-section dark">
+    <div class="container">
+      <h2 class="section-title">Awards & <span>Achievements</span></h2>
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-icon">⚽</div>
+          <h3>Top Scorer</h3>
+          <p>Ahmed Al-Mazrouei (12 Goals)</p>
+          <p class="award-subtitle">Leading goal scorer this season</p>
         </div>
-      </a>
+        <div class="award-card">
+          <div class="award-icon">🛡️</div>
+          <h3>Best Goalkeeper</h3>
+          <p>Tariq Al-Kaabi</p>
+          <p class="award-subtitle">Fewest goals conceded (11)</p>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">🤝</div>
+          <h3>Fairest Player</h3>
+          <p>Khalid Al-Mansouri</p>
+          <p class="award-subtitle">Exemplary sportsmanship</p>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">❤️</div>
+          <h3>Brotherhood Award</h3>
+          <p>Hassan Al-Mazrouei</p>
+          <p class="award-subtitle">Most supportive teammate</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Statistics Card -->
-      <a href="https://contracts.fmss.ae" style="text-decoration: none; color: inherit;">
-        <div class="bento-card">
-          <span class="card-icon">📊</span>
-          <h3 class="card-title">Statistics</h3>
-          <p class="card-description">Detailed player statistics, team analytics, and performance metrics. Data-driven insights for your team.</p>
-          <div class="card-link">View Stats</div>
+  <!-- League Info Section -->
+  <section id="info" class="league-section">
+    <div class="container">
+      <h2 class="section-title">League <span>Information</span></h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Game Format</h3>
+          <p>5-a-side or 6-a-side Football</p>
+          <p class="info-detail">90 minutes total (1 hour active play)</p>
         </div>
-      </a>
-
-      <!-- Community Card -->
-      <a href="#community" style="text-decoration: none; color: inherit;">
-        <div class="bento-card">
-          <span class="card-icon">🤝</span>
-          <h3 class="card-title">Community</h3>
-          <p class="card-description">Connect with players, coaches, and fans. Build relationships and stay updated with club news.</p>
-          <div class="card-link">Join Community</div>
+        <div class="info-card">
+          <h3>Venues</h3>
+          <p>365 Sport Dubai</p>
+          <p>Al Wasl Sports Club Dubai</p>
         </div>
-      </a>
+        <div class="info-card">
+          <h3>Season</h3>
+          <p>June - August 2025</p>
+          <p class="info-detail">8-12 matches per team</p>
+        </div>
+        <div class="info-card">
+          <h3>Motto</h3>
+          <p style="color: var(--accent-yellow); font-weight: 700; font-size: 1.1rem;">Love and Love Only</p>
+          <p class="info-detail">Brotherhood in Every Match</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>FMSS Football Club © 2025 <span class="divider">•</span> All Rights Reserved</p>
-    <p>v2.0.0 <span class="divider">•</span> Premium Multi-Domain Platform</p>
+    <p>v2.1.0 <span class="divider">•</span> Love and Love Only</p>
     <div class="footer-socials">
-      <a href="https://sams.fmss.ae">SAMS</a>
-      <a href="https://contracts.fmss.ae">Contracts</a>
-      <a href="https://quiz.fmss.ae">Quiz</a>
+      <a href="#standings">Standings</a>
+      <a href="#matches">Matches</a>
+      <a href="#awards">Awards</a>
+      <a href="#info">League Info</a>
     </div>
   </footer>
 
