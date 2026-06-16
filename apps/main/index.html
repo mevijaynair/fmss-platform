@@ -1050,6 +1050,103 @@
       .moment-card .moment-icon {
         font-size: 2.5rem;
       }
+
+      .schedule-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Compact Squad Grid */
+    .squad-grid.compact {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .squad-grid.compact .player-card {
+      padding: 1.5rem 1rem;
+    }
+
+    .squad-grid.compact .player-card h3 {
+      font-size: 0.95rem;
+    }
+
+    .squad-grid.compact .player-bio {
+      font-size: 0.8rem;
+    }
+
+    /* Schedule Container & Cards */
+    .schedule-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .schedule-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 215, 0, 0.25);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .schedule-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .schedule-card:hover::before {
+      left: 100%;
+    }
+
+    .schedule-card:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.1));
+      transform: translateY(-8px);
+      box-shadow: 0 12px 48px rgba(255, 215, 0, 0.2);
+    }
+
+    .schedule-header {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .schedule-time {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 1rem 0;
+    }
+
+    .schedule-venue {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin: 1rem 0;
+      font-weight: 500;
+    }
+
+    .schedule-note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      font-style: italic;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      padding-top: 1rem;
     }
   </style>
 </head>
@@ -1088,90 +1185,97 @@
   <section id="squad" class="league-section">
     <div class="container">
       <h2 class="section-title">Meet The <span>Brothers</span></h2>
-      <p class="section-subtitle">Ever-Growing Family ❤️ (Erratic In & Outs)</p>
-      <div class="squad-grid">
+      <p class="section-subtitle">The Core 🦅</p>
+      <div class="squad-grid compact">
         <div class="player-card">
           <h3>Vijay</h3>
-          <p class="player-bio">The organizer. Keeps it all together.</p>
+          <p class="player-bio">The organizer</p>
+        </div>
+        <div class="player-card">
+          <h3>Abhilash</h3>
+          <p class="player-bio">Wings & trickery</p>
+        </div>
+        <div class="player-card">
+          <h3>Vinod</h3>
+          <p class="player-bio">Missing? 👀</p>
         </div>
         <div class="player-card">
           <h3>Toby</h3>
-          <p class="player-bio">The presence. Makes every match special.</p>
+          <p class="player-bio">Rock keeper</p>
         </div>
         <div class="player-card">
           <h3>Saheer</h3>
-          <p class="player-bio">The warrior. Never gives up on the pitch.</p>
+          <p class="player-bio">The warrior</p>
         </div>
         <div class="player-card">
           <h3>Jeetu</h3>
-          <p class="player-bio">The hustler. Always in the action.</p>
+          <p class="player-bio">Always hustling</p>
         </div>
         <div class="player-card">
           <h3>Joe</h3>
-          <p class="player-bio">The climber. Gets better every match.</p>
+          <p class="player-bio">Gets better every match</p>
         </div>
         <div class="player-card">
           <h3>Ulli</h3>
-          <p class="player-bio">The steady one. Reliable as they come.</p>
+          <p class="player-bio">Steady & reliable</p>
         </div>
         <div class="player-card">
           <h3>Rohit</h3>
-          <p class="player-bio">The all-rounder. Does it all.</p>
+          <p class="player-bio">The all-rounder</p>
         </div>
         <div class="player-card">
           <h3>Hassan</h3>
-          <p class="player-bio">The speedster. Leaves defenders behind.</p>
+          <p class="player-bio">The speedster</p>
         </div>
         <div class="player-card">
           <h3>Bibbin</h3>
-          <p class="player-bio">The talent. Pure class on the ball.</p>
+          <p class="player-bio">Pure class</p>
         </div>
         <div class="player-card">
           <h3>Tushar</h3>
-          <p class="player-bio">The fighter. Heart and soul.</p>
+          <p class="player-bio">Heart & soul</p>
         </div>
         <div class="player-card">
           <h3>Sarath</h3>
-          <p class="player-bio">The creator. Makes magic happen.</p>
+          <p class="player-bio">The creator</p>
         </div>
         <div class="player-card">
           <h3>Nihas</h3>
-          <p class="player-bio">The skill master. Tricks for days.</p>
+          <p class="player-bio">Skill master</p>
         </div>
         <div class="player-card">
           <h3>Rojy</h3>
-          <p class="player-bio">The finisher. Clinical in front of goal.</p>
+          <p class="player-bio">The defender</p>
         </div>
         <div class="player-card">
           <h3>Saleel</h3>
-          <p class="player-bio">The rock. Defense incarnate.</p>
+          <p class="player-bio">Pure speed</p>
         </div>
         <div class="player-card">
           <h3>Shone</h3>
-          <p class="player-bio">The leader. Inspires the squad.</p>
+          <p class="player-bio">Rock keeper</p>
         </div>
         <div class="player-card">
           <h3>Rasif</h3>
-          <p class="player-bio">The sharpshooter. Always dangerous.</p>
+          <p class="player-bio">Sharp shooter</p>
         </div>
         <div class="player-card">
           <h3>Jipil</h3>
-          <p class="player-bio">The connector. Brings everyone together.</p>
+          <p class="player-bio">The connector</p>
         </div>
         <div class="player-card">
           <h3>AWS & Ali</h3>
-          <p class="player-bio">The dynamic duo. Better together.</p>
+          <p class="player-bio">Syrian powerhouse</p>
         </div>
         <div class="player-card">
           <h3>Nimesh</h3>
-          <p class="player-bio">The consistent one. Game after game.</p>
+          <p class="player-bio">Jhukenga Nahi 💪</p>
         </div>
         <div class="player-card">
           <h3>Rony</h3>
-          <p class="player-bio">The spark. Energizes the pitch.</p>
+          <p class="player-bio">The spark</p>
         </div>
       </div>
-      <p class="squad-note">🦅 And many more brothers who come and go - everyone's welcome!</p>
     </div>
   </section>
 
@@ -1179,40 +1283,25 @@
   <section id="games" class="league-section dark">
     <div class="container">
       <h2 class="section-title">Weekly <span>Schedule</span></h2>
-      <p class="section-subtitle">Regular Times & Venues - Let's Play!</p>
-      <div class="matches-grid">
-        <div class="match-card">
-          <div class="match-date">Saturday Morning 🌅</div>
-          <div class="match-time">8:00 AM - 9:00 AM</div>
-          <div class="match-teams">
-            <div class="team">FMSS</div>
-            <div class="vs">⚽</div>
-            <div class="team">Brotherhood</div>
-          </div>
-          <div class="match-venue">🏟️ Al Wasl Stadium, Dubai</div>
-          <div class="match-note">Early morning madness! ☕ Coffee after.</div>
+      <p class="section-subtitle">Regular Times & Venues</p>
+      <div class="schedule-container">
+        <div class="schedule-card">
+          <div class="schedule-header">Saturday Morning</div>
+          <div class="schedule-time">🌅 8:00 AM - 9:00 AM</div>
+          <div class="schedule-venue">🏟️ Al Wasl Stadium, Dubai</div>
+          <div class="schedule-note">Early morning madness! 🍴 Breakfast after.</div>
         </div>
-        <div class="match-card">
-          <div class="match-date">Monday Night 🌙</div>
-          <div class="match-time">8:30 PM - 9:30 PM</div>
-          <div class="match-teams">
-            <div class="team">The Squad</div>
-            <div class="vs">⚽</div>
-            <div class="team">In Action</div>
-          </div>
-          <div class="match-venue">🏟️ 365 Sports, Falcon City Dubai</div>
-          <div class="match-note">Near IMG World | All welcome!</div>
+        <div class="schedule-card">
+          <div class="schedule-header">Monday Night</div>
+          <div class="schedule-time">🌙 8:30 PM - 9:30 PM</div>
+          <div class="schedule-venue">🏟️ 365 Sports, Falcon City Dubai</div>
+          <div class="schedule-note">Near IMG World | Let's go!</div>
         </div>
-        <div class="match-card">
-          <div class="match-date">Thursday Night 🌙</div>
-          <div class="match-time">8:30 PM - 9:30 PM</div>
-          <div class="match-teams">
-            <div class="team">FMSS Family</div>
-            <div class="vs">⚽</div>
-            <div class="team">Playing Together</div>
-          </div>
-          <div class="match-venue">🏟️ 365 Sports, Falcon City Dubai</div>
-          <div class="match-note">Near IMG World | Let's go brothers!</div>
+        <div class="schedule-card">
+          <div class="schedule-header">Thursday Night</div>
+          <div class="schedule-time">🌙 8:30 PM - 9:30 PM</div>
+          <div class="schedule-venue">🏟️ 365 Sports, Falcon City Dubai</div>
+          <div class="schedule-note">Near IMG World | See you there!</div>
         </div>
       </div>
     </div>
@@ -1258,31 +1347,31 @@
     </div>
   </section>
 
-  <!-- How to Join Section -->
+  <!-- Show Up Commit Section -->
   <section id="join" class="league-section dark">
     <div class="container">
-      <h2 class="section-title">How To <span>Join</span></h2>
-      <p class="section-subtitle">Become Part of the Family</p>
+      <h2 class="section-title">Show Up <span>Commit</span></h2>
+      <p class="section-subtitle">Simple. Just Be There.</p>
       <div class="join-steps">
         <div class="step-card">
           <div class="step-number">1</div>
-          <h3>Join WhatsApp Group</h3>
-          <p>Get the link from any brother. We announce matches, celebrate wins, and share memories in the group.</p>
+          <h3>Get The Details</h3>
+          <p>Know the schedule. Saturday 8 AM at Al Wasl. Monday & Thursday 8:30 PM at 365 Sports.</p>
         </div>
         <div class="step-card">
           <div class="step-number">2</div>
-          <h3>Confirm Your Attendance</h3>
-          <p>React to match announcements with a ✅. Let us know if you can't make it - we understand!</p>
+          <h3>Show Up</h3>
+          <p>Come 15 mins early. Bring your game. All skill levels welcome. No excuses needed.</p>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
-          <h3>Show Up & Play</h3>
-          <p>Come 15 mins early. We do warm-ups together. All skill levels welcome - we're here to have fun!</p>
+          <h3>Play Hard</h3>
+          <p>Give it everything on the pitch. Support your brothers. Celebrate every goal. Have fun!</p>
         </div>
         <div class="step-card">
           <div class="step-number">4</div>
-          <h3>Be Part of the Brotherhood</h3>
-          <p>Support your brothers on and off the field. That's what makes FMSS special. Love and Love Only ❤️</p>
+          <h3>Stay Connected</h3>
+          <p>Breakfast after. Stories shared. Bonds strengthened. That's the FMSS way. Love and Love Only ❤️</p>
         </div>
       </div>
     </div>
