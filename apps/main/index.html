@@ -151,18 +151,12 @@
     }
 
     .hero-logo {
-      width: 150px;
-      height: 150px;
+      font-size: 120px;
       margin: 0 auto 2rem;
       position: relative;
       animation: logoFloat 3s ease-in-out infinite;
-    }
-
-    .hero-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 40px var(--glow-yellow)) drop-shadow(0 0 80px rgba(255, 215, 0, 0.2));
+      text-shadow: 0 0 60px rgba(255, 215, 0, 0.6), 0 0 100px rgba(255, 215, 0, 0.3);
+      filter: drop-shadow(0 0 40px var(--glow-yellow));
     }
 
     @keyframes logoFloat {
@@ -183,13 +177,14 @@
 
     .hero h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
-      letter-spacing: 2px;
-      color: var(--text-primary);
+      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 1rem;
+      letter-spacing: 4px;
+      color: var(--accent-yellow);
       text-transform: uppercase;
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
     .hero h1 span {
@@ -1312,6 +1307,141 @@
       }
     }
 
+    /* ============================================
+       PRESIDENT CARD (ROJY)
+       ============================================ */
+    .player-card.president-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+      border: 2px solid var(--accent-yellow);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      transform: scale(1.1);
+    }
+
+    .player-card.president-card h3 {
+      font-size: 1.3rem;
+      color: var(--accent-yellow);
+    }
+
+    .player-card.president-card .player-bio {
+      font-weight: 700;
+      color: var(--accent-yellow);
+      font-size: 0.95rem;
+    }
+
+    .player-card.president-card:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+
+    /* ============================================
+       GOPRO MATCHES SECTION
+       ============================================ */
+    .gopro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .gopro-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.03));
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255, 215, 0, 0.2);
+      border-radius: 14px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gopro-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
+      transition: all 0.6s ease;
+    }
+
+    .gopro-card:hover::before {
+      top: -25%;
+      right: -25%;
+    }
+
+    .gopro-card:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08));
+      border-color: rgba(255, 215, 0, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+    }
+
+    .gopro-card .gopro-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .gopro-card h3 {
+      font-size: 1.3rem;
+      color: var(--accent-yellow);
+      margin-bottom: 0.8rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    .gopro-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .gopro-card .card-link {
+      color: var(--accent-yellow);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .gopro-card:hover .card-link {
+      transform: translateX(5px);
+    }
+
+    @media (max-width: 768px) {
+      .gopro-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .gopro-card {
+        padding: 1.8rem 1.5rem;
+      }
+
+      .gopro-card .gopro-icon {
+        font-size: 2.5rem;
+      }
+
+      .gopro-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .player-card.president-card {
+        transform: scale(1.05);
+      }
+
+      .player-card.president-card:hover {
+        transform: scale(1.1);
+      }
+    }
+
     @media (max-width: 480px) {
       .league-section {
         padding: 1.5rem 0.75rem;
@@ -1426,10 +1556,8 @@
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero-content">
-      <div class="hero-logo">
-        <img src="/fmss-logo.png" alt="FMSS Logo">
-      </div>
-      <h1>Welcome to <span>FMSS</span></h1>
+      <div class="hero-logo">⚽</div>
+      <h1>FMSS</h1>
       <p class="tagline">Love and Love Only</p>
       <p class="motto">Brotherhood in Every Match</p>
       <div class="hero-ctas">
@@ -1467,11 +1595,11 @@
         </div>
         <div class="player-card">
           <h3>Jeetu</h3>
-          <p class="player-bio">Always hustling</p>
+          <p class="player-bio">Sins & fire 🔥</p>
         </div>
         <div class="player-card">
           <h3>Joe</h3>
-          <p class="player-bio">Gets better every match</p>
+          <p class="player-bio">Competition maker</p>
         </div>
         <div class="player-card">
           <h3>Ulli</h3>
@@ -1495,15 +1623,15 @@
         </div>
         <div class="player-card">
           <h3>Sarath</h3>
-          <p class="player-bio">The creator</p>
+          <p class="player-bio">Competition maker</p>
         </div>
         <div class="player-card">
           <h3>Nihas</h3>
           <p class="player-bio">Skill master</p>
         </div>
-        <div class="player-card">
+        <div class="player-card president-card">
           <h3>Rojy</h3>
-          <p class="player-bio">The defender</p>
+          <p class="player-bio">The President 👑</p>
         </div>
         <div class="player-card">
           <h3>Saleel</h3>
@@ -1670,6 +1798,34 @@
           <h3>❤️ Our Motto</h3>
           <p style="color: var(--accent-yellow); font-weight: 700; font-size: 1.1rem;">Love and Love Only</p>
           <p class="info-detail">Brotherhood in Every Match</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GoPro Matches Section -->
+  <section id="gopro" class="league-section">
+    <div class="container">
+      <h2 class="section-title">GoPro <span>Highlights</span></h2>
+      <p class="section-subtitle">Match Moments Captured in 4K</p>
+      <div class="gopro-grid">
+        <div class="gopro-card">
+          <div class="gopro-icon">📹</div>
+          <h3>Recent Matches</h3>
+          <p>Epic goals, amazing saves, and brotherhood moments - all captured in stunning clarity.</p>
+          <div class="card-link">🎬 Watch Highlights</div>
+        </div>
+        <div class="gopro-card">
+          <div class="gopro-icon">🏆</div>
+          <h3>Best Plays</h3>
+          <p>Skills, speed, and brilliant teamwork - relive the best moments from our matches.</p>
+          <div class="card-link">⭐ Top Plays</div>
+        </div>
+        <div class="gopro-card">
+          <div class="gopro-icon">🎥</div>
+          <h3>Behind the Scenes</h3>
+          <p>Warm-ups, celebrations, and the real brotherhood - the moments that matter.</p>
+          <div class="card-link">🤝 See More</div>
         </div>
       </div>
     </div>
