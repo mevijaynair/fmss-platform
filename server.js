@@ -9,6 +9,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { request } from 'node:http';
+import { readdirSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -64,6 +65,22 @@ app.get('/health', (_req, res) => {
     domain: DOMAIN,
     timestamp: new Date().toISOString()
   });
+});
+
+// Gallery images API
+app.get('/api/gallery-images', (_req, res) => {
+  try {
+    const galleryPath = join(__dirname, 'apps/main/public/gallery/background');
+    const files = readdirSync(galleryPath);
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    const images = files
+      .filter(file => imageExtensions.includes(file.toLowerCase().slice(-4)) || imageExtensions.includes(file.toLowerCase().slice(-5)))
+      .map(file => `/gallery/background/${file}`);
+
+    res.json(images.length > 0 ? images : []);
+  } catch (error) {
+    res.json([]);
+  }
 });
 
 // Subdomain routing based on Host header
