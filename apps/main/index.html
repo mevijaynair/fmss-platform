@@ -1148,6 +1148,264 @@
       border-top: 1px solid rgba(255, 215, 0, 0.1);
       padding-top: 1rem;
     }
+
+    /* ============================================
+       RESPONSIVE IMPROVEMENTS
+       ============================================ */
+    @media (max-width: 1024px) {
+      .squad-grid.compact {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.8rem;
+      }
+
+      .squad-grid.compact .player-card {
+        padding: 1.2rem 0.8rem;
+      }
+
+      .schedule-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .league-section {
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .squad-grid.compact {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .squad-grid.compact .player-card {
+        padding: 1rem 0.6rem;
+        border-radius: 8px;
+      }
+
+      .squad-grid.compact .player-card h3 {
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .squad-grid.compact .player-bio {
+        font-size: 0.7rem;
+        line-height: 1.2;
+      }
+
+      .schedule-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .schedule-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 12px;
+      }
+
+      .schedule-header {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.8rem;
+      }
+
+      .schedule-time {
+        font-size: 1rem;
+        margin: 0.8rem 0;
+      }
+
+      .schedule-venue {
+        font-size: 0.9rem;
+        margin: 0.8rem 0;
+      }
+
+      .schedule-note {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        padding-top: 0.8rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 7vw, 3rem);
+      }
+
+      .hero .tagline {
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      }
+
+      .hero .motto {
+        font-size: clamp(0.8rem, 2vw, 1rem);
+      }
+
+      .hero-logo {
+        width: 80px;
+        height: 80px;
+      }
+
+      .moments-grid,
+      .join-steps,
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .moment-card,
+      .step-card,
+      .info-card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .moment-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .moment-card .moment-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        margin: 0 auto 1rem;
+      }
+
+      .step-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .step-card p {
+        font-size: 0.9rem;
+      }
+
+      .info-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .league-section {
+        padding: 1.5rem 0.75rem;
+      }
+
+      .container {
+        padding: 0 0.75rem;
+      }
+
+      .squad-grid.compact {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+        gap: 0.6rem;
+      }
+
+      .squad-grid.compact .player-card {
+        padding: 0.8rem 0.5rem;
+      }
+
+      .squad-grid.compact .player-card h3 {
+        font-size: 0.75rem;
+        letter-spacing: 0.3px;
+      }
+
+      .squad-grid.compact .player-bio {
+        font-size: 0.65rem;
+      }
+
+      .schedule-card {
+        padding: 1.5rem 1rem;
+        border-radius: 10px;
+      }
+
+      .schedule-header {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .schedule-time {
+        font-size: 0.9rem;
+        margin: 0.6rem 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.3rem, 6vw, 1.8rem);
+      }
+
+      .hero h1 {
+        font-size: clamp(1.5rem, 7vw, 2.5rem);
+        margin-bottom: 0.3rem;
+      }
+
+      .hero .tagline {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        margin-bottom: 1rem;
+      }
+
+      .hero .motto {
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+      }
+
+      .hero-ctas {
+        gap: 1rem;
+      }
+
+      .cta-button {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+
+      .moment-card,
+      .step-card,
+      .info-card {
+        padding: 1.2rem 1rem;
+      }
+
+      .moment-card .moment-icon {
+        font-size: 2rem;
+      }
+
+      .step-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-nav-toggle {
+        display: block;
+      }
+    }
   </style>
 </head>
 
@@ -1217,7 +1475,7 @@
         </div>
         <div class="player-card">
           <h3>Ulli</h3>
-          <p class="player-bio">Steady & reliable</p>
+          <p class="player-bio">The winger</p>
         </div>
         <div class="player-card">
           <h3>Rohit</h3>
@@ -1260,12 +1518,20 @@
           <p class="player-bio">Sharp shooter</p>
         </div>
         <div class="player-card">
-          <h3>Jipil</h3>
-          <p class="player-bio">The connector</p>
+          <h3>Sinto</h3>
+          <p class="player-bio">Midfield maestro</p>
         </div>
         <div class="player-card">
           <h3>AWS & Ali</h3>
           <p class="player-bio">Syrian powerhouse</p>
+        </div>
+        <div class="player-card">
+          <h3>Sikku</h3>
+          <p class="player-bio">The engine</p>
+        </div>
+        <div class="player-card">
+          <h3>Nihal</h3>
+          <p class="player-bio">Boom 💥</p>
         </div>
         <div class="player-card">
           <h3>Nimesh</h3>
@@ -1273,7 +1539,7 @@
         </div>
         <div class="player-card">
           <h3>Rony</h3>
-          <p class="player-bio">The spark</p>
+          <p class="player-bio">The intensity</p>
         </div>
       </div>
     </div>
