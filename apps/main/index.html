@@ -2109,6 +2109,31 @@
     // Load background images on page load
     loadBackgroundImages();
 
+    // Dynamic scroll-based background image opacity
+    const updateBackgroundOpacity = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY / scrollHeight;
+
+      // Hero background: starts at 0.35, fades to 0.05
+      const heroElement = document.getElementById('heroBgImage');
+      if (heroElement) {
+        const heroOpacity = Math.max(0.05, 0.35 - (scrolled * 0.30));
+        heroElement.style.opacity = heroOpacity;
+      }
+
+      // Other sections: start at 0.25, fade to 0.02
+      const otherSectionIds = ['squadBgImage', 'gamesBgImage', 'momentsBgImage'];
+      otherSectionIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          const sectionOpacity = Math.max(0.02, 0.25 - (scrolled * 0.23));
+          element.style.opacity = sectionOpacity;
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateBackgroundOpacity);
+
     // Fallback SVG logo if image doesn't load
     document.addEventListener('DOMContentLoaded', () => {
       const logoImg = document.querySelector('.hero-logo img');
