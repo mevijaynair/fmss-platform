@@ -77,113 +77,42 @@
       position: relative;
       z-index: 2;
       display: flex;
-      align-items: center;
-      gap: 0;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .navbar-narrative {
-      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 0.3rem;
-      flex-wrap: wrap;
     }
 
-    .narrative-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.2rem;
-      position: relative;
-    }
-
-    .narrative-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 1px;
+    .navbar-brand {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 4px;
       color: var(--accent-yellow);
       text-transform: uppercase;
-      font-family: 'Montserrat', sans-serif;
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-
-    .narrative-icon {
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .narrative-step:nth-child(1) .narrative-icon {
-      animation: gloveWiggle 1.2s ease-in-out infinite;
-    }
-
-    .narrative-step:nth-child(2) .narrative-icon {
-      animation: fmssPulse 2.5s ease-in-out infinite;
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      color: var(--accent-yellow);
+      font-family: 'Oswald', sans-serif;
+      animation: brandPulse 2.5s ease-in-out infinite;
       text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
     }
 
-    .narrative-step:nth-child(2) .narrative-label {
-      opacity: 0;
-      display: none;
+    .navbar-tagline {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--accent-yellow);
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      opacity: 0.8;
     }
 
-    .narrative-step:nth-child(3) .narrative-icon {
-      animation: ballSpin 2s linear infinite;
-      font-size: 1rem;
-    }
-
-    .narrative-step:nth-child(4) .narrative-icon {
-      animation: postShake 1.5s ease-in-out infinite;
-      font-size: 1rem;
-    }
-
-    .narrative-step:nth-child(5) .narrative-icon {
-      animation: hugPulse 1.8s ease-in-out infinite;
-      font-size: 1rem;
-    }
-
-    @keyframes gloveWiggle {
-      0%, 100% { transform: rotate(-5deg); }
-      25% { transform: rotate(5deg); }
-      50% { transform: rotate(-3deg); }
-      75% { transform: rotate(3deg); }
-    }
-
-    @keyframes fmssPulse {
+    @keyframes brandPulse {
       0%, 100% {
         transform: scale(1);
         text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
       }
       50% {
-        transform: scale(1.08);
+        transform: scale(1.05);
         text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.5);
       }
-    }
-
-    @keyframes ballSpin {
-      0% { transform: rotateZ(0deg); }
-      100% { transform: rotateZ(360deg); }
-    }
-
-    @keyframes postShake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-4px); }
-      50% { transform: translateX(4px); }
-      75% { transform: translateX(-4px); }
-    }
-
-    @keyframes hugPulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.15); opacity: 1; }
     }
 
     @keyframes logoPulse {
@@ -252,20 +181,13 @@
       nav.navbar {
         padding: 0.8rem 1rem;
       }
-      .navbar-narrative {
-        gap: 0.15rem;
+      .navbar-brand {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
       }
-      .narrative-step {
-        gap: 0.1rem;
-      }
-      .narrative-icon {
-        font-size: 0.8rem;
-      }
-      .narrative-step:nth-child(2) .narrative-icon {
-        font-size: 1.8rem;
-      }
-      .narrative-label {
-        font-size: 0.5rem;
+      .navbar-tagline {
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
       }
     }
 
@@ -1701,28 +1623,8 @@
   <!-- Navigation -->
   <nav class="navbar">
     <div class="navbar-logo">
-      <div class="navbar-narrative">
-        <div class="narrative-step">
-          <div class="narrative-icon">🧤</div>
-          <div class="narrative-label">Defend</div>
-        </div>
-        <div class="narrative-step">
-          <div class="narrative-icon">FMSS</div>
-          <div class="narrative-label">Play</div>
-        </div>
-        <div class="narrative-step">
-          <div class="narrative-icon">⚽</div>
-          <div class="narrative-label">Score</div>
-        </div>
-        <div class="narrative-step">
-          <div class="narrative-icon">🥅</div>
-          <div class="narrative-label">Posts</div>
-        </div>
-        <div class="narrative-step">
-          <div class="narrative-icon">🤝</div>
-          <div class="narrative-label">Celebrate</div>
-        </div>
-      </div>
+      <div class="navbar-brand">FMSS</div>
+      <div class="navbar-tagline">Love and Love Only</div>
     </div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
