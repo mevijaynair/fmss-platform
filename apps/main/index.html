@@ -842,21 +842,223 @@
       font-size: 0.85rem;
     }
 
+    /* ============================================
+       SECTION SUBTITLE
+       ============================================ */
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-top: -1rem;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ============================================
+       SQUAD GRID & PLAYER CARDS
+       ============================================ */
+    .squad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .player-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .player-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+    }
+
+    .player-number {
+      width: 50px;
+      height: 50px;
+      background: var(--accent-yellow);
+      color: var(--primary-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+
+    .player-card h3 {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin: 0.5rem 0;
+    }
+
+    .player-card .position {
+      color: var(--accent-yellow);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .player-bio {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+
+    .squad-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-top: 2rem;
+      font-style: italic;
+    }
+
+    /* ============================================
+       BROTHERHOOD MOMENTS
+       ============================================ */
+    .moments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .moment-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .moment-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+    }
+
+    .moment-card .moment-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .moment-card h3 {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .moment-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ============================================
+       JOIN STEPS
+       ============================================ */
+    .join-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent-yellow), var(--accent-yellow-dark));
+      color: var(--primary-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.8rem;
+      margin: 0 auto 1.5rem;
+    }
+
+    .step-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .step-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Match card note */
+    .match-note {
+      color: var(--accent-yellow);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     @media (max-width: 768px) {
       .league-section {
         padding: 2.5rem 1.5rem;
       }
 
+      .squad-grid,
       .matches-grid,
-      .scorers-grid,
-      .awards-grid,
+      .moments-grid,
+      .join-steps,
       .info-grid {
         grid-template-columns: 1fr;
       }
 
-      .scorer-card {
-        flex-direction: column;
-        text-align: center;
+      .section-subtitle {
+        font-size: 1rem;
+      }
+
+      .player-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .moment-card .moment-icon {
+        font-size: 2.5rem;
       }
     }
   </style>
@@ -868,10 +1070,10 @@
     <div class="navbar-logo">FMSS</div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#standings">Standings</a></li>
-      <li><a href="#matches">Matches</a></li>
-      <li><a href="#scorers">Top Scorers</a></li>
-      <li><a href="#awards">Awards</a></li>
+      <li><a href="#squad">The Squad</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#moments">Moments</a></li>
+      <li><a href="#join">Join Us</a></li>
     </ul>
     <button class="mobile-nav-toggle">☰</button>
   </nav>
@@ -886,234 +1088,197 @@
       <p class="tagline">Love and Love Only</p>
       <p class="motto">Brotherhood in Every Match</p>
       <div class="hero-ctas">
-        <a href="#standings" class="cta-button primary">View League</a>
-        <a href="#matches" class="cta-button secondary">See Matches</a>
+        <a href="#squad" class="cta-button primary">Meet The Squad</a>
+        <a href="#join" class="cta-button secondary">Join Us</a>
       </div>
     </div>
   </section>
 
-  <!-- League Standings Section -->
-  <section id="standings" class="league-section">
+  <!-- The Squad Section -->
+  <section id="squad" class="league-section">
     <div class="container">
-      <h2 class="section-title">League <span>Standings</span></h2>
-      <div class="standings-grid">
-        <table class="standings-table">
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Team</th>
-              <th>MP</th>
-              <th>W</th>
-              <th>D</th>
-              <th>L</th>
-              <th>GF</th>
-              <th>GA</th>
-              <th>GD</th>
-              <th>Pts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="highlight">
-              <td>1</td>
-              <td>The Eagles</td>
-              <td>8</td>
-              <td>6</td>
-              <td>1</td>
-              <td>1</td>
-              <td>24</td>
-              <td>12</td>
-              <td>+12</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Phoenix Rising</td>
-              <td>8</td>
-              <td>5</td>
-              <td>2</td>
-              <td>1</td>
-              <td>22</td>
-              <td>14</td>
-              <td>+8</td>
-              <td>17</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Brotherhood FC</td>
-              <td>8</td>
-              <td>4</td>
-              <td>2</td>
-              <td>2</td>
-              <td>18</td>
-              <td>15</td>
-              <td>+3</td>
-              <td>14</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>United Strikers</td>
-              <td>8</td>
-              <td>3</td>
-              <td>2</td>
-              <td>3</td>
-              <td>16</td>
-              <td>18</td>
-              <td>-2</td>
-              <td>11</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Golden Boots</td>
-              <td>8</td>
-              <td>2</td>
-              <td>1</td>
-              <td>5</td>
-              <td>14</td>
-              <td>22</td>
-              <td>-8</td>
-              <td>7</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="section-title">Meet The <span>Squad</span></h2>
+      <p class="section-subtitle">40 Brothers, One Love ❤️</p>
+      <div class="squad-grid">
+        <div class="player-card">
+          <div class="player-number">1</div>
+          <h3>Ahmed</h3>
+          <p class="position">Striker</p>
+          <p class="player-bio">The finisher. Always finds the back of the net when it matters.</p>
+        </div>
+        <div class="player-card">
+          <div class="player-number">2</div>
+          <h3>Mohammed</h3>
+          <p class="position">Midfielder</p>
+          <p class="player-bio">The playmaker. Controls the game with every pass.</p>
+        </div>
+        <div class="player-card">
+          <div class="player-number">3</div>
+          <h3>Rashid</h3>
+          <p class="position">Defender</p>
+          <p class="player-bio">The rock. Keeps the defense solid every match.</p>
+        </div>
+        <div class="player-card">
+          <div class="player-number">4</div>
+          <h3>Saif</h3>
+          <p class="position">Goalkeeper</p>
+          <p class="player-bio">The wall. Always ready to make that crucial save.</p>
+        </div>
+        <div class="player-card">
+          <div class="player-number">5</div>
+          <h3>Hassan</h3>
+          <p class="position">Winger</p>
+          <p class="player-bio">The speedster. Lightning fast and impossible to catch.</p>
+        </div>
+        <div class="player-card">
+          <div class="player-number">6</div>
+          <h3>Khalid</h3>
+          <p class="position">Captain</p>
+          <p class="player-bio">The leader. Brings the brotherhood to every match.</p>
+        </div>
       </div>
+      <p class="squad-note">+ 34 more amazing brothers in the squad! 🦅</p>
     </div>
   </section>
 
-  <!-- Upcoming Matches Section -->
-  <section id="matches" class="league-section dark">
+  <!-- Upcoming Games Section -->
+  <section id="games" class="league-section dark">
     <div class="container">
-      <h2 class="section-title">Upcoming <span>Matches</span></h2>
+      <h2 class="section-title">Upcoming <span>Games</span></h2>
+      <p class="section-subtitle">Friendly Matches - Come Join Us!</p>
       <div class="matches-grid">
         <div class="match-card">
           <div class="match-date">Friday, June 21</div>
           <div class="match-time">7:00 PM</div>
           <div class="match-teams">
-            <div class="team">The Eagles</div>
-            <div class="vs">vs</div>
-            <div class="team">Phoenix Rising</div>
+            <div class="team">Brotherhood FC</div>
+            <div class="vs">⚽</div>
+            <div class="team">Friendly Match</div>
           </div>
           <div class="match-venue">🏟️ 365 Sport</div>
+          <div class="match-note">Bring your A-game! Breakfast after.</div>
         </div>
         <div class="match-card">
           <div class="match-date">Saturday, June 22</div>
           <div class="match-time">6:00 PM</div>
           <div class="match-teams">
-            <div class="team">Brotherhood FC</div>
-            <div class="vs">vs</div>
-            <div class="team">United Strikers</div>
+            <div class="team">The Squad</div>
+            <div class="vs">⚽</div>
+            <div class="team">Friendly Match</div>
           </div>
           <div class="match-venue">🏟️ Al Wasl Dubai</div>
+          <div class="match-note">All skill levels welcome!</div>
         </div>
         <div class="match-card">
           <div class="match-date">Sunday, June 23</div>
           <div class="match-time">5:00 PM</div>
           <div class="match-teams">
-            <div class="team">Golden Boots</div>
-            <div class="vs">vs</div>
-            <div class="team">The Eagles</div>
+            <div class="team">FMSS Family</div>
+            <div class="vs">⚽</div>
+            <div class="team">Friendly Match</div>
           </div>
           <div class="match-venue">🏟️ 365 Sport</div>
+          <div class="match-note">End of week celebration match!</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Top Scorers Section -->
-  <section id="scorers" class="league-section">
+  <!-- Brotherhood Moments Section -->
+  <section id="moments" class="league-section">
     <div class="container">
-      <h2 class="section-title">Top <span>Scorers</span></h2>
-      <div class="scorers-grid">
-        <div class="scorer-card">
-          <div class="rank">🥇</div>
-          <div class="scorer-info">
-            <h3>Ahmed Al-Mazrouei</h3>
-            <p>The Eagles</p>
-            <div class="goals">12 Goals</div>
-          </div>
+      <h2 class="section-title">Brotherhood <span>Moments</span></h2>
+      <p class="section-subtitle">Memories We Make Together</p>
+      <div class="moments-grid">
+        <div class="moment-card">
+          <div class="moment-icon">😄</div>
+          <h3>Epic Goals</h3>
+          <p>From bicycle kicks to last-minute winners. We celebrate every goal equally because every goal is EPIC.</p>
         </div>
-        <div class="scorer-card">
-          <div class="rank">🥈</div>
-          <div class="scorer-info">
-            <h3>Mohammed Hassan</h3>
-            <p>Phoenix Rising</p>
-            <div class="goals">10 Goals</div>
-          </div>
+        <div class="moment-card">
+          <div class="moment-icon">☕</div>
+          <h3>Breakfast Duty</h3>
+          <p>Late? No problem. You buy breakfast for the squad. It's our way of keeping everyone accountable and bonded.</p>
         </div>
-        <div class="scorer-card">
-          <div class="rank">🥉</div>
-          <div class="scorer-info">
-            <h3>Rashid Al-Mansoori</h3>
-            <p>Brotherhood FC</p>
-            <div class="goals">9 Goals</div>
-          </div>
+        <div class="moment-card">
+          <div class="moment-icon">🤕</div>
+          <h3>Support System</h3>
+          <p>Injured? The squad visits. Celebrating? We're there. Off the field, we're a family.</p>
         </div>
-        <div class="scorer-card">
-          <div class="rank">4️⃣</div>
-          <div class="scorer-info">
-            <h3>Saif Al-Nasser</h3>
-            <p>United Strikers</p>
-            <div class="goals">8 Goals</div>
-          </div>
+        <div class="moment-card">
+          <div class="moment-icon">📸</div>
+          <h3>Every Match Counts</h3>
+          <p>Whether you score or defend, every player is celebrated. No one sits on the bench in FMSS.</p>
+        </div>
+        <div class="moment-card">
+          <div class="moment-icon">🎉</div>
+          <h3>Post-Match Vibes</h3>
+          <p>Game ends, but the fun continues. Coffee, banter, laughter, and planning the next match.</p>
+        </div>
+        <div class="moment-card">
+          <div class="moment-icon">❤️</div>
+          <h3>Love Over Winning</h3>
+          <p>We win together, we lose together. The scoreline doesn't matter - the brotherhood does.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Awards & Achievements Section -->
-  <section id="awards" class="league-section dark">
+  <!-- How to Join Section -->
+  <section id="join" class="league-section dark">
     <div class="container">
-      <h2 class="section-title">Awards & <span>Achievements</span></h2>
-      <div class="awards-grid">
-        <div class="award-card">
-          <div class="award-icon">⚽</div>
-          <h3>Top Scorer</h3>
-          <p>Ahmed Al-Mazrouei (12 Goals)</p>
-          <p class="award-subtitle">Leading goal scorer this season</p>
+      <h2 class="section-title">How To <span>Join</span></h2>
+      <p class="section-subtitle">Become Part of the Family</p>
+      <div class="join-steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Join WhatsApp Group</h3>
+          <p>Get the link from any brother. We announce matches, celebrate wins, and share memories in the group.</p>
         </div>
-        <div class="award-card">
-          <div class="award-icon">🛡️</div>
-          <h3>Best Goalkeeper</h3>
-          <p>Tariq Al-Kaabi</p>
-          <p class="award-subtitle">Fewest goals conceded (11)</p>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Confirm Your Attendance</h3>
+          <p>React to match announcements with a ✅. Let us know if you can't make it - we understand!</p>
         </div>
-        <div class="award-card">
-          <div class="award-icon">🤝</div>
-          <h3>Fairest Player</h3>
-          <p>Khalid Al-Mansouri</p>
-          <p class="award-subtitle">Exemplary sportsmanship</p>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Show Up & Play</h3>
+          <p>Come 15 mins early. We do warm-ups together. All skill levels welcome - we're here to have fun!</p>
         </div>
-        <div class="award-card">
-          <div class="award-icon">❤️</div>
-          <h3>Brotherhood Award</h3>
-          <p>Hassan Al-Mazrouei</p>
-          <p class="award-subtitle">Most supportive teammate</p>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Be Part of the Brotherhood</h3>
+          <p>Support your brothers on and off the field. That's what makes FMSS special. Love and Love Only ❤️</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- League Info Section -->
+  <!-- Venues & Rules Section -->
   <section id="info" class="league-section">
     <div class="container">
-      <h2 class="section-title">League <span>Information</span></h2>
+      <h2 class="section-title">Let's Play <span>Together</span></h2>
       <div class="info-grid">
         <div class="info-card">
-          <h3>Game Format</h3>
-          <p>5-a-side or 6-a-side Football</p>
-          <p class="info-detail">90 minutes total (1 hour active play)</p>
+          <h3>🏟️ Where We Play</h3>
+          <p><strong>365 Sport Dubai</strong></p>
+          <p><strong>Al Wasl Sports Club</strong></p>
+          <p class="info-detail">Both beautiful 5-a-side pitches</p>
         </div>
         <div class="info-card">
-          <h3>Venues</h3>
-          <p>365 Sport Dubai</p>
-          <p>Al Wasl Sports Club Dubai</p>
+          <h3>⚽ Game Format</h3>
+          <p>5-a-side or 6-a-side</p>
+          <p>1 hour of pure football</p>
+          <p class="info-detail">No offside - more goals!</p>
         </div>
         <div class="info-card">
-          <h3>Season</h3>
-          <p>June - August 2025</p>
-          <p class="info-detail">8-12 matches per team</p>
+          <h3>📱 Stay Connected</h3>
+          <p>WhatsApp Group</p>
+          <p>Updates & celebrations</p>
+          <p class="info-detail">Ask any brother for the link</p>
         </div>
         <div class="info-card">
-          <h3>Motto</h3>
+          <h3>❤️ Our Motto</h3>
           <p style="color: var(--accent-yellow); font-weight: 700; font-size: 1.1rem;">Love and Love Only</p>
           <p class="info-detail">Brotherhood in Every Match</p>
         </div>
