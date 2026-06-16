@@ -667,6 +667,8 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     /* Hidden on mobile for navigation fallback */
@@ -697,6 +699,21 @@
 
     .league-section.dark {
       background: linear-gradient(180deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    }
+
+    .section-bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.25;
+      animation: bgFade 1.5s ease-in-out;
+      z-index: 0;
+      pointer-events: none;
     }
 
     /* Standings Table */
@@ -1691,6 +1708,7 @@
 
   <!-- The Squad Section -->
   <section id="squad" class="league-section">
+    <div class="section-bg-image" id="squadBgImage"></div>
     <div class="container">
       <h2 class="section-title">Meet The <span>Brothers</span></h2>
       <p class="section-subtitle">The Core 🦅</p>
@@ -1821,6 +1839,7 @@
 
   <!-- Schedule Section -->
   <section id="games" class="league-section dark">
+    <div class="section-bg-image" id="gamesBgImage"></div>
     <div class="container">
       <h2 class="section-title">Weekly <span>Schedule</span></h2>
       <p class="section-subtitle">Regular Times & Venues</p>
@@ -1849,6 +1868,7 @@
 
   <!-- Brotherhood Moments Section -->
   <section id="moments" class="league-section">
+    <div class="section-bg-image" id="momentsBgImage"></div>
     <div class="container">
       <h2 class="section-title">Brotherhood <span>Moments</span></h2>
       <p class="section-subtitle">Memories We Make Together</p>
@@ -2035,10 +2055,10 @@
 
     window.addEventListener('scroll', updateActiveNav);
 
-    // Dynamic background image loader
-    const heroBgImage = document.getElementById('heroBgImage');
+    // Dynamic background image loader for all sections
     let backgroundImages = [];
     let currentImageIndex = 0;
+    const sectionIds = ['heroBgImage', 'squadBgImage', 'gamesBgImage', 'momentsBgImage'];
 
     const loadBackgroundImages = async () => {
       try {
@@ -2049,9 +2069,9 @@
           if (backgroundImages.length > 0) {
             // Shuffle and set first image
             currentImageIndex = Math.floor(Math.random() * backgroundImages.length);
-            setBackgroundImage();
+            setBackgroundImagesForAllSections();
             // Rotate every 8 seconds
-            setInterval(rotateImage, 8000);
+            setInterval(rotateImagesForAllSections, 8000);
           }
         }
       } catch (error) {
@@ -2059,21 +2079,31 @@
       }
     };
 
-    const setBackgroundImage = () => {
+    const setBackgroundImagesForAllSections = () => {
       if (backgroundImages.length > 0) {
         const imagePath = backgroundImages[currentImageIndex];
-        heroBgImage.style.backgroundImage = `url('${imagePath}')`;
+        sectionIds.forEach(id => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.style.backgroundImage = `url('${imagePath}')`;
+          }
+        });
       }
     };
 
-    const rotateImage = () => {
+    const rotateImagesForAllSections = () => {
       if (backgroundImages.length > 0) {
         currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
-        heroBgImage.style.animation = 'none';
-        setTimeout(() => {
-          setBackgroundImage();
-          heroBgImage.style.animation = 'bgFade 1.5s ease-in-out';
-        }, 10);
+        sectionIds.forEach(id => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.style.animation = 'none';
+            setTimeout(() => {
+              setBackgroundImagesForAllSections();
+              element.style.animation = 'bgFade 1.5s ease-in-out';
+            }, 10);
+          }
+        });
       }
     };
 
