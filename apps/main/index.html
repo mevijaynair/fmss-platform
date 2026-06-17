@@ -1590,8 +1590,10 @@
 
     /* Compact Squad Grid - Designer Friendly */
     .squad-grid.compact {
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.2rem;
+      /* Fully fluid: cards resize smoothly with the viewport instead of
+         jumping at fixed breakpoints. clamp() sets the min card width. */
+      grid-template-columns: repeat(auto-fit, minmax(clamp(115px, 13vw, 175px), 1fr));
+      gap: clamp(0.7rem, 1.6vw, 1.3rem);
       padding: 1rem 0;
     }
 
@@ -1700,11 +1702,6 @@
        RESPONSIVE IMPROVEMENTS
        ============================================ */
     @media (max-width: 1024px) {
-      .squad-grid.compact {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 0.8rem;
-      }
-
       .squad-grid.compact .player-card {
         padding: 1.2rem 0.8rem;
       }
@@ -1726,11 +1723,6 @@
 
       .container {
         padding: 0 1rem;
-      }
-
-      .squad-grid.compact {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 0.75rem;
       }
 
       .squad-grid.compact .player-card {
@@ -2003,11 +1995,6 @@
         padding: 0 0.75rem;
       }
 
-      .squad-grid.compact {
-        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
-        gap: 0.6rem;
-      }
-
       .squad-grid.compact .player-card {
         padding: 0.8rem 0.5rem;
       }
@@ -2195,7 +2182,7 @@
         </div>
         <div class="player-card">
           <h3>Bibbin</h3>
-          <p class="player-bio">Pure Class & Elegance 💎</p>
+          <p class="player-bio">Messi's Fan 🐐</p>
         </div>
         <div class="player-card">
           <h3>Tushar</h3>
@@ -2296,6 +2283,38 @@
         <div class="player-card">
           <h3>Rahul</h3>
           <p class="player-bio">The Midfield Maestro 🎼</p>
+        </div>
+        <div class="player-card">
+          <h3>Jules</h3>
+          <p class="player-bio">Silky Moves 💫</p>
+        </div>
+        <div class="player-card">
+          <h3>Max</h3>
+          <p class="player-bio">Enforcer Libero 🛡️</p>
+        </div>
+        <div class="player-card">
+          <h3>Shemrin</h3>
+          <p class="player-bio">Powerhouse Defender 💪</p>
+        </div>
+        <div class="player-card">
+          <h3>Unni</h3>
+          <p class="player-bio">The Cricketer 🏏</p>
+        </div>
+        <div class="player-card">
+          <h3>Nivin</h3>
+          <p class="player-bio">The Gentleman 🎩</p>
+        </div>
+        <div class="player-card">
+          <h3>Rejo</h3>
+          <p class="player-bio">The Argentine Beast 🇦🇷🔥</p>
+        </div>
+        <div class="player-card">
+          <h3>Jaison</h3>
+          <p class="player-bio">Magnifico! 🎭</p>
+        </div>
+        <div class="player-card">
+          <h3>Praveen</h3>
+          <p class="player-bio">"Come On!!" 📣</p>
         </div>
       </div>
     </div>
