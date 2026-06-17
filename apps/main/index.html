@@ -1317,21 +1317,55 @@
     }
 
     .player-card {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.12);
       border-radius: 12px;
       padding: 2rem;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.02);
+    }
+
+    /* Subtle glow line accent at top of card */
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+      opacity: 0.6;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
     }
 
     .player-card:hover {
-      background: rgba(255, 215, 0, 0.08);
-      border-color: rgba(255, 215, 0, 0.3);
-      transform: translateY(-5px);
-      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+      background: rgba(255, 215, 0, 0.06);
+      border-color: rgba(255, 215, 0, 0.25);
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 0 30px rgba(255, 215, 0, 0.04),
+        0 12px 40px rgba(255, 215, 0, 0.12),
+        0 0 20px rgba(255, 215, 0, 0.08);
+    }
+
+    .player-card:hover::before {
+      opacity: 1;
+      animation: glowPulseActive 1s ease-in-out;
+    }
+
+    @keyframes glowPulseActive {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
     }
 
     .player-card h3 {
@@ -1542,22 +1576,37 @@
       }
     }
 
-    /* Compact Squad Grid */
+    /* Compact Squad Grid - Designer Friendly */
     .squad-grid.compact {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem;
+      padding: 1rem 0;
     }
 
     .squad-grid.compact .player-card {
-      padding: 1.5rem 1rem;
+      padding: 1.75rem 1.25rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.04));
     }
 
     .squad-grid.compact .player-card h3 {
-      font-size: 0.95rem;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .squad-grid.compact .player-bio {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      color: rgba(224, 224, 224, 0.85);
+      line-height: 1.4;
+    }
+
+    .squad-grid.compact .player-card:nth-child(odd) {
+      border-color: rgba(255, 215, 0, 0.1);
+    }
+
+    .squad-grid.compact .player-card:nth-child(even) {
+      border-color: rgba(255, 215, 0, 0.08);
     }
 
     /* Schedule Container & Cards */
@@ -2071,8 +2120,8 @@
         <div class="stat-label">Brothers</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Nights a Week</div>
+        <div class="stat-number">2 + 1</div>
+        <div class="stat-label">Nights &amp; Morning</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">2</div>
@@ -2090,11 +2139,11 @@
     <div class="section-bg-image" id="squadBgImage"></div>
     <div class="container">
       <h2 class="section-title">Meet The <span>Brothers</span></h2>
-      <p class="section-subtitle">The Core 🦅</p>
+      <p class="section-subtitle">One Squad, One Love 💛</p>
       <div class="squad-grid compact">
         <div class="player-card">
           <h3>Vijay</h3>
-          <p class="player-bio">Master Organizer 🎯</p>
+          <p class="player-bio">The Cashier 💰 · Master Organizer 🎯</p>
         </div>
         <div class="player-card">
           <h3>Abhilash</h3>
@@ -2169,8 +2218,12 @@
           <p class="player-bio">The Playmaker 🎩</p>
         </div>
         <div class="player-card">
-          <h3>AWS & Ali</h3>
-          <p class="player-bio">Unstoppable Powerhouse 💪</p>
+          <h3>AWS</h3>
+          <p class="player-bio">Syrian Messi 🇸🇾⚽</p>
+        </div>
+        <div class="player-card">
+          <h3>Ali</h3>
+          <p class="player-bio">Hot Chinese Legs 🌶️🦵 💃👯‍♀️</p>
         </div>
         <div class="player-card">
           <h3>Sikku</h3>
@@ -2186,7 +2239,7 @@
         </div>
         <div class="player-card">
           <h3>Rony</h3>
-          <p class="player-bio">Pure Intensity & Fire 🔥</p>
+          <p class="player-bio">Pure Intensity & Fire 🔥 🎤</p>
         </div>
         <div class="player-card">
           <h3>Zaki</h3>
