@@ -839,6 +839,189 @@
       background: linear-gradient(180deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
     }
 
+    /* Scroll-triggered background changes */
+    .league-section.scroll-active {
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.02) 100%) !important;
+      transition: all 0.6s ease;
+    }
+
+    .league-section.scroll-active.dark {
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.02) 0%, rgba(255, 215, 0, 0.05) 100%) !important;
+    }
+
+    /* ============================================
+       NEWS SECTION
+       ============================================ */
+    .news-section {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(20, 15, 5, 0.9));
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+    }
+
+    .news-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .news-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .news-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .news-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+      border-color: rgba(255, 215, 0, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(255, 215, 0, 0.2);
+    }
+
+    .news-card-image {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .news-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .news-card:hover .news-card-image img {
+      transform: scale(1.08);
+    }
+
+    .news-card-content {
+      padding: 2rem;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .news-card-date {
+      color: var(--accent-yellow);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .news-card h3 {
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .news-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .news-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: var(--accent-yellow);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    .news-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .news-highlight {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+      border-left: 4px solid var(--accent-yellow);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .news-highlight h3 {
+      color: var(--accent-yellow);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .news-highlight p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .news-highlight ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .news-highlight li {
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .news-highlight li::before {
+      content: '⭐';
+      position: absolute;
+      left: 0;
+      color: var(--accent-yellow);
+    }
+
+    @media (max-width: 768px) {
+      .news-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .news-card-content {
+        min-height: auto;
+      }
+
+      .news-card-image {
+        height: 220px;
+      }
+    }
+
     .section-bg-image {
       position: absolute;
       top: 0;
@@ -1134,21 +1317,55 @@
     }
 
     .player-card {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.12);
       border-radius: 12px;
       padding: 2rem;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.02);
+    }
+
+    /* Subtle glow line accent at top of card */
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+      opacity: 0.6;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
     }
 
     .player-card:hover {
-      background: rgba(255, 215, 0, 0.08);
-      border-color: rgba(255, 215, 0, 0.3);
-      transform: translateY(-5px);
-      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+      background: rgba(255, 215, 0, 0.06);
+      border-color: rgba(255, 215, 0, 0.25);
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 0 30px rgba(255, 215, 0, 0.04),
+        0 12px 40px rgba(255, 215, 0, 0.12),
+        0 0 20px rgba(255, 215, 0, 0.08);
+    }
+
+    .player-card:hover::before {
+      opacity: 1;
+      animation: glowPulseActive 1s ease-in-out;
+    }
+
+    @keyframes glowPulseActive {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
     }
 
     .player-card h3 {
@@ -1359,22 +1576,37 @@
       }
     }
 
-    /* Compact Squad Grid */
+    /* Compact Squad Grid - Designer Friendly */
     .squad-grid.compact {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem;
+      padding: 1rem 0;
     }
 
     .squad-grid.compact .player-card {
-      padding: 1.5rem 1rem;
+      padding: 1.75rem 1.25rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.04));
     }
 
     .squad-grid.compact .player-card h3 {
-      font-size: 0.95rem;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .squad-grid.compact .player-bio {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      color: rgba(224, 224, 224, 0.85);
+      line-height: 1.4;
+    }
+
+    .squad-grid.compact .player-card:nth-child(odd) {
+      border-color: rgba(255, 215, 0, 0.1);
+    }
+
+    .squad-grid.compact .player-card:nth-child(even) {
+      border-color: rgba(255, 215, 0, 0.08);
     }
 
     /* Schedule Container & Cards */
@@ -1859,6 +2091,7 @@
       <li><a href="#squad">The Squad</a></li>
       <li><a href="#games">Games</a></li>
       <li><a href="#moments">Moments</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#join">Join Us</a></li>
     </ul>
     <button class="mobile-nav-toggle">☰</button>
@@ -1868,7 +2101,7 @@
   <section id="home" class="hero">
     <div class="hero-bg-image" id="heroBgImage"></div>
     <div class="hero-content">
-      <div class="hero-logo">⚽</div>
+      <div class="hero-logo"><img src="/fmss-logo.png" alt="FMSS Logo" style="width: 150px; height: 150px; object-fit: contain;"></div>
       <h1>FMSS</h1>
       <p class="tagline">Love and Love Only</p>
       <p class="motto">Brotherhood in Every Match</p>
@@ -1887,8 +2120,8 @@
         <div class="stat-label">Brothers</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Nights a Week</div>
+        <div class="stat-number">2 + 1</div>
+        <div class="stat-label">Nights &amp; Morning</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">2</div>
@@ -1906,11 +2139,11 @@
     <div class="section-bg-image" id="squadBgImage"></div>
     <div class="container">
       <h2 class="section-title">Meet The <span>Brothers</span></h2>
-      <p class="section-subtitle">The Core 🦅</p>
+      <p class="section-subtitle">One Squad, One Love 💛</p>
       <div class="squad-grid compact">
         <div class="player-card">
           <h3>Vijay</h3>
-          <p class="player-bio">Master Organizer 🎯</p>
+          <p class="player-bio">The Cashier 💰 · Master Organizer 🎯</p>
         </div>
         <div class="player-card">
           <h3>Abhilash</h3>
@@ -1985,8 +2218,12 @@
           <p class="player-bio">The Playmaker 🎩</p>
         </div>
         <div class="player-card">
-          <h3>AWS & Ali</h3>
-          <p class="player-bio">Unstoppable Powerhouse 💪</p>
+          <h3>AWS</h3>
+          <p class="player-bio">Syrian Messi 🇸🇾⚽</p>
+        </div>
+        <div class="player-card">
+          <h3>Ali</h3>
+          <p class="player-bio">Hot Chinese Legs 🌶️🦵 💃👯‍♀️</p>
         </div>
         <div class="player-card">
           <h3>Sikku</h3>
@@ -2002,7 +2239,7 @@
         </div>
         <div class="player-card">
           <h3>Rony</h3>
-          <p class="player-bio">Pure Intensity & Fire 🔥</p>
+          <p class="player-bio">Pure Intensity & Fire 🔥 🎤</p>
         </div>
         <div class="player-card">
           <h3>Zaki</h3>
@@ -2184,6 +2421,57 @@
     </div>
   </section>
 
+  <!-- News & Updates Section -->
+  <section id="news" class="news-section">
+    <div class="container">
+      <h2 class="section-title">FMSS <span>News</span></h2>
+      <p class="section-subtitle">Latest Updates & Sponsorships</p>
+
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-card-image">
+            <img src="/gallery/Jersey/IMG-20250831-WA0086.jpg" alt="Times Clothing Jersey Collection">
+          </div>
+          <div class="news-card-content">
+            <div>
+              <div class="news-card-date">🎉 June 2026</div>
+              <h3>FMSS x Times Clothing Partnership</h3>
+              <p>We're thrilled to announce our official jersey partnership with Times Clothing! They've crafted the perfect blend of style, comfort, and brotherhood into every piece.</p>
+              <p><strong>Why Times Clothing?</strong> Their commitment to quality and our values of unity resonates perfectly. Every jersey tells our story — from the pitch to the streets.</p>
+            </div>
+            <div class="news-badge">🤝 Official Sponsor</div>
+          </div>
+        </div>
+
+        <div class="news-sidebar">
+          <div class="news-highlight">
+            <h3>Times Clothing Reviews 👕</h3>
+            <p><em>"The craftsmanship is exceptional. You can feel the brotherhood in every stitch!"</em> — Vijay</p>
+            <p><em>"Finally, jerseys that match our passion and spirit. Times Clothing gets it!"</em> — Rojy, President</p>
+            <p><em>"Wearing these jerseys feels like being part of something bigger. That's the FMSS way."</em> — AWS</p>
+
+            <h3 style="margin-top: 1.5rem;">Why Times Clothing?</h3>
+            <ul>
+              <li>Premium quality fabrics that breathe on the pitch</li>
+              <li>Design reflects our brotherhood & unity</li>
+              <li>Comfortable from kickoff to celebrations</li>
+              <li>They believe in what we believe in</li>
+              <li>Supporting local talent & craftsmanship</li>
+              <li>Perfect for on-field and off-field</li>
+            </ul>
+          </div>
+
+          <div class="news-highlight" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.02));">
+            <h3>The Brotherhood in Every Jersey 👥</h3>
+            <p>Times Clothing isn't just making jerseys — they're weaving our story. Every color, every thread, every design choice reflects what FMSS stands for: <strong>Love and Love Only.</strong></p>
+            <p style="margin-top: 1rem;">When you wear a Times Clothing FMSS jersey, you're not just wearing fabric. You're representing 40+ brothers, 2 nights and 1 morning of pure football, 2 magnificent venues, and countless memories yet to be made.</p>
+            <p style="margin-top: 1rem; color: var(--accent-yellow); font-weight: 600;">Together, we are FMSS. Together, we are Times Clothing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- GoPro Matches Section -->
   <section id="gopro" class="league-section dark">
     <div class="container">
@@ -2235,6 +2523,25 @@
         }
       });
     }
+
+    // Scroll-triggered background effects
+    const sections = document.querySelectorAll('.league-section');
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-active');
+        } else {
+          entry.target.classList.remove('scroll-active');
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => scrollObserver.observe(section));
 
     // Smooth scroll navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
