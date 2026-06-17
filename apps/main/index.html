@@ -2074,6 +2074,163 @@
         display: block;
       }
     }
+
+    /* ============================================
+       ESTABLISHED LINE (hero)
+       ============================================ */
+    .hero-est {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--accent-yellow);
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .hero-est::before,
+    .hero-est::after {
+      content: '';
+      height: 1px;
+      width: 45px;
+      background: linear-gradient(90deg, transparent, var(--accent-yellow));
+      opacity: 0.6;
+    }
+
+    .hero-est::after {
+      background: linear-gradient(90deg, var(--accent-yellow), transparent);
+    }
+
+    /* ============================================
+       OFFICE BEARERS
+       ============================================ */
+    .office-featured {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      max-width: 720px;
+      margin: 2rem auto;
+    }
+
+    .office-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03));
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 14px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: inset 0 0 25px rgba(255, 215, 0, 0.04);
+    }
+
+    .office-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 215, 0, 0.5);
+      box-shadow: 0 14px 40px rgba(255, 215, 0, 0.15);
+    }
+
+    .office-card .office-role {
+      color: var(--accent-yellow);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .office-card .office-name {
+      font-size: 1.6rem;
+      color: var(--text-primary);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+    }
+
+    .office-card .office-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .committee-label {
+      text-align: center;
+      color: var(--accent-yellow);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 1rem;
+      margin: 2.5rem 0 1.25rem;
+    }
+
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 14vw, 170px), 1fr));
+      gap: clamp(0.7rem, 1.6vw, 1.2rem);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .committee-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 10px;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .committee-card:hover {
+      background: rgba(255, 215, 0, 0.06);
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .committee-card .c-name {
+      color: var(--text-primary);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .committee-card .c-alias {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      margin-top: 0.3rem;
+    }
+
+    @media (max-width: 560px) {
+      .office-featured {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       SOCIAL / INSTAGRAM LINK
+       ============================================ */
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem auto;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      border-radius: 30px;
+      color: var(--accent-yellow);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    .social-link:hover {
+      background: rgba(255, 215, 0, 0.15);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 
@@ -2087,6 +2244,7 @@
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#squad">The Squad</a></li>
+      <li><a href="#office">Office</a></li>
       <li><a href="#games">Games</a></li>
       <li><a href="#moments">Moments</a></li>
       <li><a href="#news">News</a></li>
@@ -2103,6 +2261,7 @@
       <h1>FMSS</h1>
       <p class="tagline">Love and Love Only</p>
       <p class="motto">Brotherhood in Every Match</p>
+      <p class="hero-est">Established 2009</p>
       <div class="hero-ctas">
         <a href="#squad" class="cta-button primary">Meet The Squad</a>
         <a href="#join" class="cta-button secondary">Join Us</a>
@@ -2295,6 +2454,40 @@
           <h3>Praveen</h3>
           <p class="player-bio">"Come On!!" 📣</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Office Bearers Section -->
+  <section id="office" class="league-section dark">
+    <div class="container">
+      <h2 class="section-title">Office <span>Bearers</span></h2>
+      <p class="section-subtitle">The Brothers Who Lead 🤝</p>
+
+      <div class="office-featured">
+        <div class="office-card">
+          <span class="office-icon">👑</span>
+          <div class="office-role">President</div>
+          <div class="office-name">Rojy</div>
+        </div>
+        <div class="office-card">
+          <span class="office-icon">💰</span>
+          <div class="office-role">Treasurer</div>
+          <div class="office-name">Vijay</div>
+        </div>
+      </div>
+
+      <div class="committee-label">— Committee —</div>
+      <div class="committee-grid">
+        <div class="committee-card"><div class="c-name">Jeetu</div></div>
+        <div class="committee-card"><div class="c-name">Nihas</div></div>
+        <div class="committee-card"><div class="c-name">Shameer</div><div class="c-alias">a.k.a Ulli</div></div>
+        <div class="committee-card"><div class="c-name">Charles</div></div>
+        <div class="committee-card"><div class="c-name">Saleel</div></div>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="https://www.instagram.com/fmssfootballclub?igsh=a2p6bTJja3F2dnZj" target="_blank" rel="noopener" class="social-link">📷 Follow @fmssfootballclub</a>
       </div>
     </div>
   </section>
@@ -2513,7 +2706,9 @@
   <!-- Footer -->
   <footer>
     <p>FMSS <span class="divider">•</span> Love and Love Only ❤️</p>
+    <a href="https://www.instagram.com/fmssfootballclub?igsh=a2p6bTJja3F2dnZj" target="_blank" rel="noopener" class="social-link">📷 @fmssfootballclub</a>
     <p style="font-size: 0.85rem; margin-top: 1rem;">We came as individuals, we leave as brothers 🦅</p>
+    <p style="font-size: 0.8rem; margin-top: 0.75rem; letter-spacing: 2px; opacity: 0.7; font-family: 'Cinzel', serif;">ESTABLISHED 2009</p>
   </footer>
 
   <script>
