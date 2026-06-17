@@ -317,6 +317,14 @@
       filter: drop-shadow(0 0 40px var(--glow-yellow));
     }
 
+    .hero-logo img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
     @keyframes logoFloat {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-20px); }
@@ -454,6 +462,10 @@
       .hero-logo {
         font-size: 84px;
         margin-bottom: 1.25rem;
+      }
+      .hero-logo img {
+        width: 105px;
+        height: 105px;
       }
     }
 
@@ -1795,8 +1807,12 @@
       }
 
       .hero-logo {
-        width: 80px;
-        height: 80px;
+        width: auto;
+        height: auto;
+      }
+      .hero-logo img {
+        width: 92px;
+        height: 92px;
       }
 
       .moments-grid,
@@ -2166,14 +2182,19 @@
     }
 
     .committee-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 14vw, 170px), 1fr));
+      /* Flex + centre so an odd count (5) wraps evenly instead of leaving
+         a lone card stranded on the left of a new row. */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: clamp(0.7rem, 1.6vw, 1.2rem);
-      max-width: 900px;
+      max-width: 880px;
       margin: 0 auto;
     }
 
     .committee-card {
+      flex: 1 1 140px;
+      max-width: 170px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 215, 0, 0.15);
       border-radius: 10px;
@@ -2257,7 +2278,7 @@
   <section id="home" class="hero">
     <div class="hero-bg-image" id="heroBgImage"></div>
     <div class="hero-content">
-      <div class="hero-logo"><img src="/fmss-logo.png" alt="FMSS Logo" style="width: 150px; height: 150px; object-fit: contain;"></div>
+      <div class="hero-logo"><img src="/fmss-logo.png" alt="FMSS Logo"></div>
       <h1>FMSS</h1>
       <p class="tagline">Love and Love Only</p>
       <p class="motto">Brotherhood in Every Match</p>
