@@ -1037,6 +1037,18 @@
       pointer-events: none;
     }
 
+    /* Mobile: tighten the photo framing and give it a dynamic slant.
+       The scale-up hides the triangular gaps the skew would otherwise
+       leave; the parent's overflow:hidden clips the overhang. */
+    @media (max-width: 768px) {
+      .section-bg-image,
+      .hero-bg-image {
+        background-position: center center;
+        transform: skewY(-3deg) scale(1.25);
+        transform-origin: center center;
+      }
+    }
+
     /* Standings Table */
     .standings-table {
       width: 100%;
@@ -2621,31 +2633,31 @@
     };
 
     const setBackgroundImagesForAllSections = () => {
-      if (backgroundImages.length > 0) {
-        const imagePath = backgroundImages[currentImageIndex];
-        sectionIds.forEach(id => {
-          const element = document.getElementById(id);
-          if (element) {
-            element.style.backgroundImage = `url('${imagePath}')`;
-          }
-        });
-      }
+      if (backgroundImages.length === 0) return;
+      sectionIds.forEach((id, i) => {
+        const element = document.getElementById(id);
+        if (element) {
+          // Offset each section by its index so adjacent sections never
+          // show the same photo as you scroll past them.
+          const path = backgroundImages[(currentImageIndex + i) % backgroundImages.length];
+          element.style.backgroundImage = `url('${path}')`;
+        }
+      });
     };
 
     const rotateImagesForAllSections = () => {
-      if (backgroundImages.length > 0) {
-        currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
-        sectionIds.forEach(id => {
-          const element = document.getElementById(id);
-          if (element) {
-            element.style.animation = 'none';
-            setTimeout(() => {
-              setBackgroundImagesForAllSections();
-              element.style.animation = 'bgFade 1.5s ease-in-out';
-            }, 10);
-          }
-        });
-      }
+      if (backgroundImages.length === 0) return;
+      currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+      sectionIds.forEach((id, i) => {
+        const element = document.getElementById(id);
+        if (!element) return;
+        const path = backgroundImages[(currentImageIndex + i) % backgroundImages.length];
+        element.style.animation = 'none';
+        setTimeout(() => {
+          element.style.backgroundImage = `url('${path}')`;
+          element.style.animation = 'bgFade 1.5s ease-in-out';
+        }, 10);
+      });
     };
 
     // Load background images on page load
