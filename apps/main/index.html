@@ -1037,15 +1037,14 @@
       pointer-events: none;
     }
 
-    /* Mobile: tighten the photo framing and give it a dynamic slant.
-       The scale-up hides the triangular gaps the skew would otherwise
-       leave; the parent's overflow:hidden clips the overhang. */
+    /* Mobile: keep the photos cleanly centred and covering the section.
+       (Removed the skewY/scale slant — on phones it tilted and over-cropped
+       the image, which looked broken rather than stylish.) */
     @media (max-width: 768px) {
       .section-bg-image,
       .hero-bg-image {
         background-position: center center;
-        transform: skewY(-3deg) scale(1.25);
-        transform-origin: center center;
+        background-size: cover;
       }
     }
 
