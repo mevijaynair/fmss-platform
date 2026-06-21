@@ -10,6 +10,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { request } from 'node:http';
 import { readdirSync } from 'node:fs';
+import { mountNewsAdmin } from './apps/main/news-admin.js';
+
+// Load .env if present (Node >=20.12). Harmless if the file is absent or env
+// is already provided by systemd.
+try { process.loadEnvFile(); } catch { /* no .env file — rely on real env */ }
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -109,6 +114,10 @@ app.use((req, res, next) => {
   // Default to main site (fmss.ae or localhost)
   next();
 });
+
+// News store + hidden admin portal (main domain only — mounted after the
+// subdomain router so it never answers on sams.* / contracts.*)
+mountNewsAdmin(app, { rootDir: __dirname });
 
 // Main site routes
 app.get('/', (req, res) => {

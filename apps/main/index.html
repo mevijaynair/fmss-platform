@@ -894,6 +894,94 @@
       z-index: 2;
     }
 
+    /* Dynamic news feed (rendered from /api/news) */
+    .news-feed {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .news-post {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .news-post:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 16px 48px rgba(255, 215, 0, 0.15);
+    }
+
+    .news-post-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .news-post-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+
+    .news-post-date {
+      color: var(--accent-yellow);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .news-post h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .news-post p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .news-post-links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.85rem;
+    }
+
+    .news-post-links a {
+      font-size: 0.82rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-radius: 20px;
+      color: var(--accent-yellow);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .news-post-links a:hover {
+      background: rgba(255, 215, 0, 0.12);
+      box-shadow: 0 0 16px rgba(255, 215, 0, 0.2);
+    }
+
     .news-card {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(20px);
@@ -2651,47 +2739,15 @@
       <h2 class="section-title">FMSS <span>News</span></h2>
       <p class="section-subtitle">Latest Updates & Sponsorships</p>
 
-      <div class="news-grid">
-        <div class="news-card">
-          <div class="news-card-image">
-            <img src="/gallery/Jersey/IMG-20250831-WA0086.jpg" alt="Times Clothing Jersey Collection">
-          </div>
-          <div class="news-card-content">
-            <div>
-              <div class="news-card-date">🎉 June 2026</div>
-              <h3>FMSS x Times Clothing Partnership</h3>
-              <p>We're thrilled to announce our official jersey partnership with Times Clothing! They've crafted the perfect blend of style, comfort, and brotherhood into every piece.</p>
-              <p><strong>Why Times Clothing?</strong> Their commitment to quality and our values of unity resonates perfectly. Every jersey tells our story — from the pitch to the streets.</p>
-            </div>
-            <div class="news-badge">🤝 Official Sponsor</div>
-          </div>
-        </div>
+      <div id="newsFeed" class="news-feed">
+        <p style="text-align:center;color:var(--text-muted);grid-column:1/-1">Loading news…</p>
+      </div>
 
-        <div class="news-sidebar">
-          <div class="news-highlight">
-            <h3>Times Clothing Reviews 👕</h3>
-            <p><em>"The craftsmanship is exceptional. You can feel the brotherhood in every stitch!"</em> — Vijay</p>
-            <p><em>"Finally, jerseys that match our passion and spirit. Times Clothing gets it!"</em> — Rojy, President</p>
-            <p><em>"Wearing these jerseys feels like being part of something bigger. That's the FMSS way."</em> — AWS</p>
-
-            <h3 style="margin-top: 1.5rem;">Why Times Clothing?</h3>
-            <ul>
-              <li>Premium quality fabrics that breathe on the pitch</li>
-              <li>Design reflects our brotherhood & unity</li>
-              <li>Comfortable from kickoff to celebrations</li>
-              <li>They believe in what we believe in</li>
-              <li>Supporting local talent & craftsmanship</li>
-              <li>Perfect for on-field and off-field</li>
-            </ul>
-          </div>
-
-          <div class="news-highlight" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.02));">
-            <h3>The Brotherhood in Every Jersey 👥</h3>
-            <p>Times Clothing isn't just making jerseys — they're weaving our story. Every color, every thread, every design choice reflects what FMSS stands for: <strong>Love and Love Only.</strong></p>
-            <p style="margin-top: 1rem;">When you wear a Times Clothing FMSS jersey, you're not just wearing fabric. You're representing 40+ brothers, 2 nights and 1 morning of pure football, 2 magnificent venues, and countless memories yet to be made.</p>
-            <p style="margin-top: 1rem; color: var(--accent-yellow); font-weight: 600;">Together, we are FMSS. Together, we are Times Clothing.</p>
-          </div>
-        </div>
+      <div class="news-highlight" style="max-width: 820px; margin: 2.5rem auto 0; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.02));">
+        <h3>The Brotherhood in Every Jersey 👥</h3>
+        <p>Our jerseys aren't just fabric — they weave our story. Every colour and thread reflects what FMSS stands for: <strong>Love and Love Only.</strong></p>
+        <p style="margin-top: 1rem;">When you wear the FMSS jersey, you represent 40+ brothers, 2 nights and 1 morning of pure football, 2 magnificent venues, and countless memories yet to be made.</p>
+        <p style="margin-top: 1rem; color: var(--accent-yellow); font-weight: 600;">Together, we are FMSS.</p>
       </div>
     </div>
   </section>
@@ -2876,6 +2932,50 @@
 
     // Load background images on page load
     loadBackgroundImages();
+
+    // ============================================
+    // Dynamic news feed (rendered from /api/news)
+    // ============================================
+    (async () => {
+      const feed = document.getElementById('newsFeed');
+      if (!feed) return;
+      const escHtml = (s) => { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; };
+      const safeUrl = (u) => /^https?:\/\//i.test(u || '') ? u : '';
+      const safeImg = (u) => (/^https?:\/\//i.test(u || '') || (u || '').startsWith('/')) ? u : '';
+      const fmtDate = (d) => { const t = new Date(d); return isNaN(t) ? (d || '') : t.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); };
+      try {
+        const items = await (await fetch('/api/news')).json();
+        if (!Array.isArray(items) || !items.length) {
+          feed.innerHTML = '<p style="text-align:center;color:var(--text-muted);grid-column:1/-1">No news yet — check back soon!</p>';
+          return;
+        }
+        feed.innerHTML = '';
+        items.forEach((n) => {
+          const art = document.createElement('article');
+          art.className = 'news-post';
+          const img = safeImg(n.image);
+          const ig = safeUrl(n.instagram);
+          const fb = safeUrl(n.facebook);
+          let html = '';
+          if (img) html += `<div class="news-post-img" style="background-image:url('${encodeURI(img)}')"></div>`;
+          html += '<div class="news-post-body">';
+          html += `<div class="news-post-date">${escHtml(fmtDate(n.date))}${n.badge ? ' · ' + escHtml(n.badge) : ''}</div>`;
+          html += `<h3>${escHtml(n.title)}</h3>`;
+          if (n.body) html += `<p>${escHtml(n.body)}</p>`;
+          if (ig || fb) {
+            html += '<div class="news-post-links">';
+            if (ig) html += `<a href="${escHtml(ig)}" target="_blank" rel="noopener">📷 Instagram</a>`;
+            if (fb) html += `<a href="${escHtml(fb)}" target="_blank" rel="noopener">📘 Facebook</a>`;
+            html += '</div>';
+          }
+          html += '</div>';
+          art.innerHTML = html;
+          feed.appendChild(art);
+        });
+      } catch (e) {
+        feed.innerHTML = '<p style="text-align:center;color:var(--text-muted);grid-column:1/-1">News unavailable right now.</p>';
+      }
+    })();
 
     // Fallback SVG logo if image doesn't load
     document.addEventListener('DOMContentLoaded', () => {
