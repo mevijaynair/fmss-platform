@@ -15,7 +15,7 @@ import rateLimit from 'express-rate-limit';
 import multer from 'multer';
 import bcrypt from 'bcryptjs';
 import { randomUUID, randomBytes } from 'node:crypto';
-import { join, extname } from 'node:path';
+import { join } from 'node:path';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
 export function mountNewsAdmin(app, { rootDir }) {
@@ -97,17 +97,21 @@ export function mountNewsAdmin(app, { rootDir }) {
     message: { error: 'Too many attempts. Try again later.' },
   });
 
+  // Derive the stored extension from the validated mimetype, NOT the uploaded
+  // filename — otherwise an "image" named evil.html would be stored as .html
+  // and served as text/html (script execution).
+  const MIME_EXT = { 'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp', 'image/gif': '.gif' };
   const upload = multer({
     storage: multer.diskStorage({
       destination: (_req, _file, cb) => cb(null, uploadsDir),
       filename: (_req, file, cb) => {
-        const ext = (extname(file.originalname) || '.jpg').toLowerCase();
+        const ext = MIME_EXT[file.mimetype] || '.jpg';
         cb(null, `${Date.now()}-${randomBytes(6).toString('hex')}${ext}`);
       },
     }),
     limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB
     fileFilter: (_req, file, cb) => {
-      const ok = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(file.mimetype);
+      const ok = Object.prototype.hasOwnProperty.call(MIME_EXT, file.mimetype);
       cb(ok ? null : new Error('Only image files are allowed'), ok);
     },
   });
@@ -126,8 +130,10 @@ export function mountNewsAdmin(app, { rootDir }) {
     updatedAt: new Date().toISOString(),
   });
 
-  // ---- Serve uploaded images ----
-  app.use('/uploads', express.static(uploadsDir));
+  // ---- Serve uploaded images (nosniff so they can't be MIME-sniffed as HTML) ----
+  app.use('/uploads', express.static(uploadsDir, {
+    setHeaders: (res) => res.setHeader('X-Content-Type-Options', 'nosniff'),
+  }));
 
   // ---- Public API ----
   app.get('/api/news', (_req, res) => {
